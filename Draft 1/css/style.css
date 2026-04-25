@@ -504,3 +504,10 @@ footer a {
     gap: 1rem;
   }
 }
+
+.page-intro p {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+

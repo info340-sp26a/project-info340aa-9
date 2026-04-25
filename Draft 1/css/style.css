@@ -510,4 +510,9 @@ footer a {
   color: var(--text-main);
 }
 
-
+.logger-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}

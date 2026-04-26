@@ -13,64 +13,97 @@
 
 <body>
   <header>
-  <h1>FitHea</h1>
+    <div class="header-container">
+     <h1>FitHea</h1>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Dashboard</a></li>
-      <li><a href="log.html">Logger</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="plan.html">Fitness Plan</a></li>
-    </ul>
-  </nav>
+     <nav>
+      <ul>
+       <li><a href="index.html">Dashboard</a></li>
+       <li><a href="log.html">Logger</a></li>
+       <li><a href="community.html">Community</a></li>
+       <li><a href="plan.html" class="active">Fitness Plan</a></li>
+      </ul>
+     </nav>
+    </div>
   </header>
 
   <main>
-  <section>
-    <h2>Your Fitness Plan</h2>
-    <p>A workout plan based on your fitness goal and activity summary.</p>
+    <section class="welcome-banner">
+      <div>
+        <div class="welcome-badge-row">
+          <span class="status-chip">Muscle Gain</span>
+          <span class="status-chip status-chip-soft">Moderate Activity</span>
+        </div>
+        
+        <h2>Your Fitness Plan</h2>
+        <p>A workout plan based on your fitness goal and activity summary.</p>
+     </div>
+    
+      <div class="card accent-panel hero-summary">
+      <span class="panel-label">Today’s Focus</span>
+      <h3>Upper Body Strength</h3>
+      <p>Train with a balanced mix of warm-up, strength work, and recovery.</p>
+      
+      <div class="mini-metrics">
+        <div>
+          <span>Burned</span>
+          <strong>320 kcal</strong>
+        </div>
+        <div>
+          <span>Goal</span>
+          <strong>45 min</strong>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Goal Summary</h2>
-    <p><strong>Current Goal:</strong> Muscle Gain</p>
-    <p><strong>Activity Level:</strong> Moderate</p>
-    <p><strong>Calories Burned Today:</strong> 320 kcal</p>
-  </section>
+  <div class="plan-grid">
+    <section class="card">
+      <h2>Goal Summary</h2>
+      <div class="goal-details">
+        <p><strong>Current Goal:</strong> Muscle Gain</p>
+        <p><strong>Activity Level:</strong> Moderate</p>
+        <p><strong>Calories Burned Today:</strong> 320 kcal</p>
+      </div>
+    </section>
 
-  <section>
+  <section class="card">
     <h2>Activity Target</h2>
-    <p><strong>Daily Exercise Goal:</strong> 45 minutes</p>
-    <p><strong>Weekly Target:</strong> 4 workout sessions</p>
-    <p><strong>Focus Area:</strong> Upper Body Strength</p>
+    <div class="target-details">
+      <p><strong>Daily Exercise Goal:</strong> 45 minutes</p>
+      <p><strong>Weekly Target:</strong> 4 workout sessions</p>
+      <p><strong>Focus Area:</strong> Upper Body Strength</p>
+    </div>
   </section>
+  </div>
 
   <section>
     <h2>Today's Workout Plan</h2>
-    
-    <article>
+
+    <div class="plan-card-grid">
+      <article class="card workout-card">
         <h3>Warm-Up</h3>
         <p>5–10 minutes of light jogging and dynamic stretching.</p>
-    </article>
-
-    <article>
+      </article>
+      
+      <article class="card workout-card">
         <h3>Main Workout</h3>
         <p>30 minutes of strength training focusing on upper body exercises.</p>
-    </article>
-
-    <article>
+      </article>
+      
+      <article class="card workout-card">
         <h3>Cardio / Recovery</h3>
         <p>15 minutes of cycling or brisk walking after strength training.</p>
-    </article>
+      </article>
 
-    <article>
+      <article class="card workout-card">
         <h3>Notes</h3>
         <p>Stay hydrated and allow enough recovery time after exercise.</p>
-    </article>
-
+      </article>
+    </div>
   </section>
 
-  <section>
+  <section class="card accent-panel guidance-note">
     <h2>Why This Plan Fits You</h2>
     <p>This plan focuses on strength-based exercises to support muscle growth while maintaining a balanced level of activity throughout the day.</p>
   </section>

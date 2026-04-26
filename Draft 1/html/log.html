@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Activity Log</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>FitHea</h1>
+  </header>
+
+  <main>
+    <section class="page-intro">
+      <h2>Activity Log</h2>
+      <p>
+        Record your meals and workouts in one place to understand how your daily
+        habits support your fitness goal.
+      </p>
+    </section>
+
+    <section class="logger-layout">
+      <section class="card">
+        <h3>Nutrition Form</h3>
+
+        <form>
+          <div class="form-group">
+            <label for="food-name">Food Name</label>
+            <input type="text" id="food-name" name="food-name" placeholder="e.g., Chicken salad" />
+          </div>
+
+          <div class="form-group">
+            <label for="food-quantity">Quantity</label>
+            <input type="text" id="food-quantity" name="food-quantity" placeholder="e.g., 1 bowl" />
+          </div>
+
+          <div class="form-group">
+            <label for="food-calories">Estimated Calories</label>
+            <input type="number" id="food-calories" name="food-calories" placeholder="e.g., 450" />
+          </div>
+
+          <button type="submit">Add Food</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h3>Activity Form</h3>
+
+        <form>
+          <div class="form-group">
+            <label for="exercise-type">Exercise Type</label>
+            <input type="text" id="exercise-type" name="exercise-type" placeholder="e.g., Strength training" />
+          </div>
+
+          <div class="form-group">
+            <label for="exercise-duration">Duration</label>
+            <input type="text" id="exercise-duration" name="exercise-duration" placeholder="e.g., 45 minutes" />
+          </div>
+
+          <div class="form-group">
+            <label for="calories-burned">Estimated Calories Burned</label>
+            <input type="number" id="calories-burned" name="calories-burned" placeholder="e.g., 300" />
+          </div>
+
+          <button type="submit">Add Activity</button>
+        </form>
+      </section>
+    </section>
+
+    <section class="card log-section">
+      <h3>Today Nutrition & Activity Log</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Item</th>
+            <th>Details</th>
+            <th>Calories</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Food</td>
+            <td>Chicken Salad</td>
+            <td>1 bowl</td>
+            <td>450 kcal</td>
+            <td>
+              <button type="button">Edit</button>
+              <button type="button">Delete</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Activity</td>
+            <td>Strength Training</td>
+            <td>45 minutes</td>
+            <td>-300 kcal</td>
+            <td>
+              <button type="button">Edit</button>
+              <button type="button">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>

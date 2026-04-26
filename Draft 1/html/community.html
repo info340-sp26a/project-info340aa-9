@@ -1,10 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Stella Sun, Larissa Wang, Rain Hou, Riwoo Kim">
     <meta name="description" content="draft 1 of FitHea">
-    <title>Draft 1</title>
+    <title>FitHea | Community </title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
+
+<body class="community-page">
+    <header>
+        <div class="header-container">
+            <h1>FitHea</h1>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html" class="active">Dashboard</a></li>
+                    <li><a href="log.html">Activity Log</a></li>
+                    <li><a href="plan.html">Fitness Plan</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-intro">
+            <h2>Muscle gain Squad</h2>
+            <p> Connect with others and share your progress, tips and motivation to stay on track with your fitness
+                goals.</p>
+        </section>
+
+        <div class="community-grid-layout">
+            <section class="card chat-container">
+                <div class="chat-header">
+                    <h3>Group Chat</h3>
+                </div>
+                <div class="chat-messages">
+                    <div class="chat-received">
+                        <span class="sender">Larissa</span>
+                        <p>Hello everyone! How is your week going?</p>
+                    </div>
+                    <div class="chat-sent">
+                        <span class="sender">You</span>
+                        <p>Hi Larissa! It's going well, just finished a great workout session. How about you?</p>
+                    </div>
+                    <div class="chat-received">
+                        <span class="sender">Rain</span>
+                        <p>Hi everyone! I just started a new workout routine and it's going really well so far.</p>
+                    </div>
+                </div>
+
+                <form class="chat-input-form">
+                    <input type="text" id="chat-box" aria-label="Type a message to the group"
+                        placeholder="Write a message..." required>
+                    <button type="submit">Send</button>
+                </form>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FitHea Team. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

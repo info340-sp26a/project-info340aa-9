@@ -966,13 +966,12 @@ button:hover {
   line-height: 1.8;
 }
 
-<<<<<<< HEAD
 .goal-details p strong,
 .target-details p strong {
   margin-right: 0.35rem;
 }
 
-@media (max-width: 720px) {
+@media (min-width: 720px) {
   main,
   /*
   footer {
@@ -1005,8 +1004,6 @@ button:hover {
   }
 }
 
-=======
->>>>>>> 4178bc8f3ff228e2d9f1ad40a3ef1da7db91e36e
 @media (min-width: 900px) {
   .plan-grid {
     grid-template-columns: 1fr 1fr;

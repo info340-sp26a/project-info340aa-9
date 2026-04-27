@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Normalized Head Data-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="author"
+      content="Stella Sun, Larissa Wang, Rain Hou, Riwoo Kim"
+    />
+    <link rel="icon" href="./img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- End Normalized Head Data-->
+
+    <!-- Unique Head Data-->
+    <title>Dashboard</title>
+    <meta
+      name="description"
+      content="FitHea - A unified health management system for tracking fitness and nutrition."
+    />
+    <!-- End Unique Head Data-->
+  </head>
+  <body class="main-dashboard">
+    <header>
+      <div class="header-container">
+        <h1>FitHea</h1>
+        <nav aria-label="Main Navigation">
+          <ul>
+            <li><a href="index.html" class="active">Dashboard</a></li>
+            <li><a href="log.html">Activity Log</a></li>
+            <li><a href="plan.html">Fitness Plan</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome-banner">
+        <div>
+          <div class="welcome-badge-row">
+            <span class="status-chip">Muscle Gain</span>
+            <span class="status-chip status-chip-soft">5-day streak</span>
+          </div>
+          <h2>Welcome back, Larissa!</h2>
+          <p>
+            Your unified health system is updated with today's dietary and
+            training insights.
+          </p>
+          <div class="hero-pill-row">
+            <span class="status-pill"
+              >Daily goal: <strong>75% complete</strong></span
+            >
+            <span class="status-pill status-pill-soft"
+              >Target calories: <strong>2,500 kcal</strong></span
+            >
+          </div>
+        </div>
+        <div class="hero-summary card accent-panel">
+          <span class="panel-label">Today's recommendation</span>
+          <h3>Protein + strength recovery</h3>
+          <p>
+            Keep your meals rich in lean protein and pair your next workout with
+            a short mobility session.
+          </p>
+          <div class="mini-metrics">
+            <div>
+              <span>Protein</span>
+              <strong>145g</strong>
+            </div>
+            <div>
+              <span>Hydration</span>
+              <strong>2.2L</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-controls card">
+        <h3>Filter Your Progress</h3>
+        <form action="#" method="get" class="filter-form">
+          <div class="form-group">
+            <label for="date-range">View Period:</label>
+            <select id="date-range" name="period">
+              <option value="today">Today</option>
+              <option value="week">Past Week</option>
+              <option value="month">Past Month</option>
+              <option value="year">Past Year</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="metric-search">Search Metric:</label>
+            <input
+              type="text"
+              id="metric-search"
+              name="q"
+              placeholder="e.g., Protein, Cardio"
+            />
+          </div>
+          <button type="submit">Update View</button>
+        </form>
+      </section>
+
+      <div class="dashboard-grid">
+        <section class="card chart-view">
+          <h3>Daily Achievement</h3>
+          <figure>
+            <img
+              src="img/progress-chart.svg"
+              alt="Doughnut chart showing 75% goal completion for the day"
+            />
+            <figcaption>
+              Daily progress based on your Muscle Gain goal.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="card calorie-box">
+          <h3>Calorie Overview</h3>
+          <div class="stats-container">
+            <div class="stat-item">
+              <span class="stat-label">Intake</span>
+              <span class="stat-value">2,100 kcal</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Burned</span>
+              <span class="stat-value">600 kcal</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card plan-preview">
+          <h3>Plan Preview</h3>
+          <div class="preview-content">
+            <p><strong>Focus:</strong> Resistance Training</p>
+            <p>
+              Current analysis suggests increasing protein intake by 15% today.
+            </p>
+          </div>
+          <a href="plan.html" class="cta-link">View Full Plan Details &rarr;</a>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 FitHea Team. All rights reserved.</p>
+      <p>
+        Contact:
+        <a href="mailto:support@fithea.uw.edu">support@fithea.uw.edu</a>
+      </p>
+    </footer>
+  </body>
+</html>

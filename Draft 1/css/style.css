@@ -875,6 +875,13 @@ button:hover {
   margin-bottom: 1.5rem;
 }
 
+.chat-inline-image {
+  width: 350px; 
+  height: auto;    
+  border-radius: 12px; 
+  margin-bottom: 0.5rem; 
+}
+
 .chat-received,
 .chat-sent {
   max-width: 85%;

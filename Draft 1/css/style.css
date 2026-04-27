@@ -853,6 +853,7 @@ button:hover {
 .community-grid-layout {
   display: grid;
   gap: 2rem;
+  grid-template-columns: 1fr;
 }
 
 .chat-container {
@@ -907,7 +908,7 @@ button:hover {
   margin-bottom: 0.2rem;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 900px) {
   .community-grid-layout {
     grid-template-columns: 1fr;
   }

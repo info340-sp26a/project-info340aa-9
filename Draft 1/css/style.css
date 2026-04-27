@@ -876,7 +876,7 @@ button:hover {
 
 .chat-received,
 .chat-sent {
-  max-width: 70%;
+  max-width: 85%;
   padding: 0.75rem 1.25rem;
   border-radius: 18px;
   font-size: 0.95rem;

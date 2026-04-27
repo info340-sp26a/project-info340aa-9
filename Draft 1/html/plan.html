@@ -1,118 +1,158 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="author" content="Stella Sun, Larissa Wang, Rain Hou, Riwoo Kim">
-    <meta name="description" content="draft 1 of FitHea">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Normalized Head Data-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="author"
+      content="Stella Sun, Larissa Wang, Rain Hou, Riwoo Kim"
+    />
+    <link rel="icon" href="./img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- End Normalized Head Data-->
 
-    <title>FitHea - Fitness Plan</title>
+    <!-- Unique Head Data-->
+    <title>Fitness Plan</title>
+    <meta
+      name="description"
+      content="FitHea - A unified health management system for tracking fitness and nutrition."
+    />
+    <!-- End Unique Head Data-->
+  </head>
 
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-  <header>
-    <div class="header-container">
-     <h1>FitHea</h1>
-
-     <nav>
-      <ul>
-       <li><a href="main.html">Dashboard</a></li>
-       <li><a href="log.html">Activity Log</a></li>
-       <li><a href="plan.html" class="active">Fitness Plan</a></li>
-       <li><a href="community.html">Community</a></li>
-      </ul>
-     </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="welcome-banner">
-      <div>
-        <div class="welcome-badge-row">
-          <span class="status-chip">Muscle Gain</span>
-          <span class="status-chip status-chip-soft">Moderate Activity</span>
-        </div>
-        
-        <h2>Your Personalized Fitness Plan</h2>
-        <p>Based on your current goal and activity level, here’s a workout plan to guide your progress today.</p>
-     </div>
-    
-      <div class="card accent-panel hero-summary">
-      <span class="panel-label">Today’s Focus</span>
-      <h3>Upper Body Strength</h3>
-      <p>This plan emphasizes upper body training with enough recovery to support steady muscle growth.</p>
-      
-      <div class="mini-metrics">
-        <div>
-          <span>Burned</span>
-          <strong>320 kcal</strong>
-        </div>
-        <div>
-          <span>Goal</span>
-          <strong>45 min</strong>
-        </div>
-        </div>
+  <body>
+    <header class="nav-header">
+      <div class="nav-header-container">
+        <h1 class="nav-logo">
+          <a href="index.html" class="nav-home-button">FitHea</a>
+        </h1>
+        <nav aria-label="Main Navigation">
+          <ul>
+            <li>
+              <a href="dashboard.html" class="nav-button">Dashboard</a>
+            </li>
+            <li><a href="log.html" class="nav-button">Activity Log</a></li>
+            <li>
+              <a href="plan.html" class="active nav-button">Fitness Plan</a>
+            </li>
+            <li><a href="community.html" class="nav-button">Community</a></li>
+          </ul>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <div class="plan-grid">
-      <section class="card">
-        <h2>Goal Summary</h2>
-        <div class="goal-details">
-          <p><strong>Primary Goal:</strong> Muscle Gain</p>
-          <p><strong>Activity Level:</strong> Moderate</p>
-          <p><strong>Calories Burned:</strong> 320 kcal</p>
+    <main>
+      <section class="welcome-banner">
+        <div>
+          <div class="welcome-badge-row">
+            <span class="status-chip">Muscle Gain</span>
+            <span class="status-chip status-chip-soft">Moderate Activity</span>
+          </div>
+
+          <h2>Your Personalized Fitness Plan</h2>
+          <p>
+            Based on your current goal and activity level, here’s a workout plan
+            to guide your progress today.
+          </p>
+        </div>
+
+        <div class="card accent-panel hero-summary">
+          <span class="panel-label">Today’s Focus</span>
+          <h3>Upper Body Strength</h3>
+          <p>
+            This plan emphasizes upper body training with enough recovery to
+            support steady muscle growth.
+          </p>
+
+          <div class="mini-metrics">
+            <div>
+              <span>Burned</span>
+              <strong>320 kcal</strong>
+            </div>
+            <div>
+              <span>Goal</span>
+              <strong>45 min</strong>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="card">
-        <h2>Activity Target</h2>
-        <div class="target-details">
-          <p><strong>Daily Goal:</strong> 45 minutes</p>
-          <p><strong>Weekly Target:</strong> 4 workout sessions</p>
-          <p><strong>Focus Area:</strong> Upper Body Strength</p>
+      <div class="plan-grid">
+        <section class="card">
+          <h2>Goal Summary</h2>
+          <div class="goal-details">
+            <p><strong>Primary Goal:</strong> Muscle Gain</p>
+            <p><strong>Activity Level:</strong> Moderate</p>
+            <p><strong>Calories Burned:</strong> 320 kcal</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Activity Target</h2>
+          <div class="target-details">
+            <p><strong>Daily Goal:</strong> 45 minutes</p>
+            <p><strong>Weekly Target:</strong> 4 workout sessions</p>
+            <p><strong>Focus Area:</strong> Upper Body Strength</p>
+          </div>
+        </section>
+      </div>
+
+      <section>
+        <h2>Today's Workout Plan</h2>
+
+        <div class="plan-card-grid">
+          <article class="card workout-card">
+            <h3>Warm-Up</h3>
+            <p>
+              Start with 5–10 minutes of light jogging and dynamic stretching to
+              prepare your body for training.
+            </p>
+          </article>
+
+          <article class="card workout-card">
+            <h3>Main Workout</h3>
+            <p>
+              Spend 30 minutes on upper body strength exercises to support your
+              muscle gain goal.
+            </p>
+          </article>
+
+          <article class="card workout-card">
+            <h3>Cardio / Recovery</h3>
+            <p>
+              Finish with 15 minutes of cycling or brisk walking to stay active
+              without overtraining.
+            </p>
+          </article>
+
+          <article class="card workout-card">
+            <h3>Notes</h3>
+            <p>
+              Remember to stay hydrated and give your muscles enough time to
+              recover after training.
+            </p>
+          </article>
         </div>
       </section>
-    </div>
 
-  <section>
-    <h2>Today's Workout Plan</h2>
+      <section class="card accent-panel guidance-note">
+        <h2>Why This Plan Fits You</h2>
+        <p>
+          This plan is designed to help you build muscle through focused
+          strength training while keeping your overall activity balanced for the
+          day.
+        </p>
+      </section>
+    </main>
 
-    <div class="plan-card-grid">
-      <article class="card workout-card">
-        <h3>Warm-Up</h3>
-        <p>Start with 5–10 minutes of light jogging and dynamic stretching to prepare your body for training.</p>
-      </article>
-      
-      <article class="card workout-card">
-        <h3>Main Workout</h3>
-        <p>Spend 30 minutes on upper body strength exercises to support your muscle gain goal.</p>
-      </article>
-      
-      <article class="card workout-card">
-        <h3>Cardio / Recovery</h3>
-        <p>Finish with 15 minutes of cycling or brisk walking to stay active without overtraining.</p>
-      </article>
-
-      <article class="card workout-card">
-        <h3>Notes</h3>
-        <p>Remember to stay hydrated and give your muscles enough time to recover after training.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="card accent-panel guidance-note">
-    <h2>Why This Plan Fits You</h2>
-    <p>This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.</p>
-  </section>
-
-</main>
-
-  <footer>
-    <p>&copy; 2026 FitHea Team. All rights reserved.</p>
-  </footer>
-</body>
-
+    <footer>
+      <p>&copy; 2026 FitHea Team. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="mailto:support@fithea.uw.edu">Contact</a>
+      </div>
+    </footer>
+  </body>
 </html>

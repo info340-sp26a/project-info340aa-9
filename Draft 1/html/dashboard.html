@@ -1,30 +1,39 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Normalized Head Data-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="author"
       content="Stella Sun, Larissa Wang, Rain Hou, Riwoo Kim"
     />
+    <link rel="icon" href="./img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- End Normalized Head Data-->
+
+    <!-- Unique Head Data-->
+    <title>Dashboard</title>
     <meta
       name="description"
       content="FitHea - A unified health management system for tracking fitness and nutrition."
     />
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <title>FitHea | Main Dashboard</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <!-- End Unique Head Data-->
   </head>
   <body class="main-dashboard">
-    <header>
-      <div class="header-container">
-        <h1>FitHea</h1>
+    <header class="nav-header">
+      <div class="nav-header-container">
+        <h1 class="nav-logo">
+          <a href="index.html" class="nav-home-button">FitHea</a>
+        </h1>
         <nav aria-label="Main Navigation">
           <ul>
-            <li><a href="index.html" class="active">Dashboard</a></li>
-            <li><a href="log.html">Activity Log</a></li>
-            <li><a href="plan.html">Fitness Plan</a></li>
-            <li><a href="community.html">Community</a></li>
+            <li>
+              <a href="dashboard.html" class="active nav-button">Dashboard</a>
+            </li>
+            <li><a href="log.html" class="nav-button">Activity Log</a></li>
+            <li><a href="plan.html" class="nav-button">Fitness Plan</a></li>
+            <li><a href="community.html" class="nav-button">Community</a></li>
           </ul>
         </nav>
       </div>
@@ -139,10 +148,11 @@
 
     <footer>
       <p>&copy; 2026 FitHea Team. All rights reserved.</p>
-      <p>
-        Contact:
-        <a href="mailto:support@fithea.uw.edu">support@fithea.uw.edu</a>
-      </p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="mailto:support@fithea.uw.edu">Contact</a>
+      </div>
     </footer>
   </body>
 </html>

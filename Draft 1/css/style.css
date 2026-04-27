@@ -924,6 +924,7 @@ button:hover {
 .plan-card-grid {
   display: grid;
   gap: 1.5rem;
+  margin-top: 1rem;
   margin-bottom: 1.75rem;
 }
 
@@ -941,6 +942,11 @@ button:hover {
   background: rgba(17, 24, 39, 0.04);
 }
 
+.goal-details p strong,
+.target-details p strong {
+  margin-right: 0.35rem;
+}
+
 .workout-card p {
   margin: 0;
   color: var(--text-main);
@@ -950,23 +956,17 @@ button:hover {
   margin-top: 0.5rem;
 }
 
-.guidance-note p {
-  color: var(--text-muted);
-}
-
-.plan-card-grid {
-  margin-top: 1rem;
-}
-
 .guidance-note h2 {
   margin-bottom: 1rem;
 }
 
 .guidance-note p {
+  color: var(--text-muted);
   max-width: 60rem;
   line-height: 1.8;
 }
 
+<<<<<<< HEAD
 .goal-details p strong,
 .target-details p strong {
   margin-right: 0.35rem;
@@ -1005,6 +1005,8 @@ button:hover {
   }
 }
 
+=======
+>>>>>>> 4178bc8f3ff228e2d9f1ad40a3ef1da7db91e36e
 @media (min-width: 900px) {
   .plan-grid {
     grid-template-columns: 1fr 1fr;
@@ -1012,18 +1014,5 @@ button:hover {
 
   .plan-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .community-grid-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 980px) {
-  .dashboard-grid {
-    grid-template-columns: 1.55fr 1fr;
-  }
-  .chart-view {
-    grid-row: span 2;
   }
 }

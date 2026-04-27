@@ -590,6 +590,7 @@ footer a {
 .plan-card-grid {
   display: grid;
   gap: 1.5rem;
+  margin-top: 1rem;
   margin-bottom: 1.75rem;
 }
 
@@ -607,6 +608,11 @@ footer a {
   background: rgba(17, 24, 39, 0.04);
 }
 
+.goal-details p strong,
+.target-details p strong {
+  margin-right: 0.35rem;
+}
+
 .workout-card p {
   margin: 0;
   color: var(--text-main);
@@ -616,8 +622,14 @@ footer a {
   margin-top: 0.5rem;
 }
 
+.guidance-note h2 {
+  margin-bottom: 1rem;
+}
+
 .guidance-note p {
   color: var(--text-muted);
+  max-width: 60rem;
+  line-height: 1.8;
 }
 
 @media (min-width: 900px) {
@@ -628,22 +640,4 @@ footer a {
   .plan-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
-
-.plan-card-grid {
-  margin-top: 1rem;
-}
-
-.guidance-note h2 {
-  margin-bottom: 1rem;
-}
-
-.guidance-note p {
-  max-width: 60rem;
-  line-height: 1.8;
-}
-
-.goal-details p strong,
-.target-details p strong {
-  margin-right: 0.35rem;
 }

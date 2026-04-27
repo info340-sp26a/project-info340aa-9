@@ -483,7 +483,7 @@ footer a {
   gap: 1rem;
 }
 
-.chat-message {
+.chat-messages {
   display: flex;
   gap: 1rem;
   flex-grow: 1;

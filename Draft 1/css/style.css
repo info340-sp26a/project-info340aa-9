@@ -87,9 +87,6 @@ header {
 
 header h1 {
   letter-spacing: -0.08em;
-}
-
-header h1 {
   margin: 0;
   font-size: 1.65rem;
   font-weight: 800;
@@ -306,18 +303,6 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-@media (max-width: 900px) {
-  .welcome-banner {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 850px) {
-  .filter-form {
-    grid-template-columns: 1fr;
-  }
-}
-
 .form-group {
   display: grid;
   gap: 0.55rem;
@@ -372,15 +357,6 @@ button:hover {
 .dashboard-grid {
   display: grid;
   gap: 1.75rem;
-}
-
-@media (min-width: 980px) {
-  .dashboard-grid {
-    grid-template-columns: 1.55fr 1fr;
-  }
-  .chart-view {
-    grid-row: span 2;
-  }
 }
 
 .chart-view {
@@ -484,27 +460,6 @@ footer a {
   border-bottom: 1px solid rgba(17, 24, 39, 0.08);
 }
 
-@media (max-width: 720px) {
-  .header-container,
-  main,
-  footer {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  header h1 {
-    font-size: 1.4rem;
-  }
-
-  .dashboard-controls {
-    padding: 1.5rem;
-  }
-
-  .stats-container {
-    gap: 1rem;
-  }
-}
-
 .page-intro p {
   font-weight: 600;
   color: var(--text-main);
@@ -572,13 +527,6 @@ footer a {
   margin-bottom: 0.2rem;
 }
 
-@media (max-width: 900px) {
-  .community-grid-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-
 /* Fitness Plan Page */
 
 .plan-grid {
@@ -620,16 +568,6 @@ footer a {
   color: var(--text-muted);
 }
 
-@media (min-width: 900px) {
-  .plan-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .plan-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 .plan-card-grid {
   margin-top: 1rem;
 }
@@ -646,4 +584,58 @@ footer a {
 .goal-details p strong,
 .target-details p strong {
   margin-right: 0.35rem;
+}
+
+@media (max-width: 720px) {
+  .header-container, main, footer {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  .dashboard-controls {
+    padding: 1.5rem;
+  }
+
+  .stats-container {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .filter-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .welcome-banner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .plan-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .plan-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .community-grid-layout {
+    grid-template-columns: 1.8fr 1fr;
+  }
+}
+
+@media (min-width: 980px) {
+  .dashboard-grid {
+    grid-template-columns: 1.55fr 1fr;
+  }
+  .chart-view {
+    grid-row: span 2;
+  }
 }

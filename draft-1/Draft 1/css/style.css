@@ -192,12 +192,12 @@ select:focus {
 button {
   width: 100%;
   border-radius: 999px;
-  padding: 0.9rem 1.6rem;
+  padding: 0.7rem 1.2rem;
   background: var(--accent);
   color: #ffffff;
   border: none;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
   box-shadow: 0 18px 45px rgba(29, 71, 55, 0.16);
   transition: var(--transition);

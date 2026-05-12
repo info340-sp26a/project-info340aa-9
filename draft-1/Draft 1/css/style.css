@@ -11,12 +11,12 @@
   --surface-soft: #f4f4f5;
   --surface-alt: #ececed;
   --text-main: #141414;
-  --text-muted: rgba(38, 44, 49, 0.62);
+  --text-muted: rgba(38, 44, 49, 0.78);
   --border: rgba(20, 20, 20, 0.08);
   --accent: #1d4737;
   --accent-soft: rgba(29, 71, 55, 0.12);
   --accent-strong: #142f27;
-  --accent-rose: #b56f8a;
+  --accent-rose: #9f4f6c;
   --accent-rose-soft: rgba(181, 111, 138, 0.12);
   --radius: 28px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -180,7 +180,7 @@ select {
 }
 
 input::placeholder {
-  color: rgba(55, 65, 81, 0.45);
+  color: rgba(55, 65, 81, 0.65);
 }
 
 input:focus,
@@ -273,7 +273,7 @@ button:hover {
   text-transform: uppercase;
 }
 
-.hero-summary h3 {
+.hero-summary h2 {
   margin: 0 0 0.75rem;
   font-size: 1.1rem;
 }
@@ -300,7 +300,7 @@ button:hover {
   align-items: center;
 }
 
-.welcome-banner h2 {
+.welcome-banner h1 {
   margin: 0;
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: 800;
@@ -314,7 +314,7 @@ button:hover {
     gap: 1.75rem;
   }
 
-  .welcome-banner h2 {
+  .welcome-banner h1 {
     font-size: clamp(2rem, 2.5vw, 3rem);
   }
 }
@@ -429,7 +429,7 @@ button:hover {
   font-size: 0.95rem;
 }
 
-.chart-view h3 {
+.chart-view h2 {
   padding-top: 2.2rem;
   padding-bottom: 1rem;
 }
@@ -689,6 +689,19 @@ table button {
   flex-direction: column;
   gap: 1rem;
   height: 600px;
+}
+
+.chat-input-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.chat-input-form button {
+  width: auto;
+  min-width: 6.5rem;
+  padding: 0.7rem 1.1rem;
+  align-self: start;
 }
 
 .chat-messages {
@@ -1192,7 +1205,7 @@ body.landing-page {
 
 .landing-cta-subtext {
   font-size: 13px;
-  color: #999;
+  color: #666;
   margin-top: 0 !important;
 }
 

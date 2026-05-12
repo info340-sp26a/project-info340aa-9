@@ -800,6 +800,40 @@ footer p {
   color: #000;
 }
 
+.share-controls {
+    background-color: white;
+    padding: 1px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.share-options {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 5px;
+}
+
+.share-title {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: var(--text-muted);
+}
+
+.mini-share-btn {
+    background-color: white;
+    border: 1px solid var(--accent-strong); 
+    color: var(--accent-strong);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.mini-share-btn:hover {
+    background-color: var(--accent-strong);
+    color: white;
+}
+
 @media (min-width: 768px) {
   footer {
     padding: 40px;

@@ -24,9 +24,9 @@
   <body class="community-page">
     <header class="nav-header">
       <div class="nav-header-container">
-        <h1 class="nav-logo">
+        <div class="nav-logo">
           <a href="../../index.html" class="nav-home-button">FitHea</a>
-        </h1>
+        </div>
         <nav aria-label="Main Navigation">
           <ul>
             <li>
@@ -44,7 +44,7 @@
 
     <main>
       <section class="page-intro">
-        <h2>Muscle gain Squad</h2>
+        <h1>Muscle Gain Squad</h1>
         <p>
           Connect with others and share your progress, tips and motivation to
           stay on track with your fitness goals.
@@ -52,9 +52,10 @@
       </section>
 
       <div class="community-grid-layout">
-        <section class="card chat-container">
+        <section class="card chat-container" 
+                 aria-labelledby="group-chat-heading">
           <div class="chat-header">
-            <h3>Group Chat</h3>
+            <h2 id="group-chat-heading">Group Chat</h2>
           </div>
           <div class="chat-messages">
             <div class="chat-received">

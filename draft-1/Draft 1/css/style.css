@@ -678,6 +678,13 @@ table button {
   margin-bottom: 2rem;
 }
 
+.logger-layout button {
+  width: auto;
+  min-width: 9rem;
+  padding: 0.7rem 1rem;
+  margin-top: 1rem;
+}
+
 @media (min-width: 768px) {
   .logger-layout {
     grid-template-columns: 1fr 1fr;

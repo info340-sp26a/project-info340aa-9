@@ -680,9 +680,8 @@ table button {
 
 .logger-layout button {
   width: auto;
-  min-width: 9rem;
-  padding: 0.7rem 1rem;
-  margin-top: 1rem;
+  min-width: 7rem;
+  padding: 0.65rem 0.9rem;
 }
 
 @media (min-width: 768px) {

@@ -607,8 +607,8 @@ button:hover {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
-  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
 }
 
 thead {
@@ -678,6 +678,11 @@ table button {
   grid-template-columns: 1fr;
   gap: 1.75rem;
   margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .logger-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 .logger-layout button {

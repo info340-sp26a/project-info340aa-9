@@ -1,3 +1,26 @@
+const workouts = [
+  {
+    title: 'Warm-Up',
+    description:
+      'Start with 5–10 minutes of light jogging and dynamic stretching to prepare your body for training.'
+  },
+  {
+    title: 'Main Workout',
+    description:
+      'Spend 30 minutes on upper body strength exercises to support your muscle gain goal.'
+  },
+  {
+    title: 'Cardio / Recovery',
+    description:
+      'Finish with 15 minutes of cycling or brisk walking to stay active without overtraining.'
+  },
+  {
+    title: 'Notes',
+    description:
+      'Remember to stay hydrated and give your muscles enough time to recover after training.'
+  }
+];
+
 export default function PlanPage() {
   return (
     <main>
@@ -26,7 +49,7 @@ export default function PlanPage() {
           </p>
         </div>
       </section>
-      
+
       <div className="plan-grid">
         <section className="card">
           <h2>Goal Summary</h2>
@@ -51,37 +74,14 @@ export default function PlanPage() {
         <h2>Today&apos;s Workout Plan</h2>
 
         <div className="plan-card-grid">
-          <div className="card workout-card">
-            <h3>Warm-Up</h3>
-            <p>
-              Start with 5–10 minutes of light jogging and dynamic stretching to
-              prepare your body for training.
-            </p>
-          </div>
-
-          <div className="card workout-card">
-            <h3>Main Workout</h3>
-            <p>
-              Spend 30 minutes on upper body strength exercises to support your
-              muscle gain goal.
-            </p>
-          </div>
-
-          <div className="card workout-card">
-            <h3>Cardio / Recovery</h3>
-            <p>
-              Finish with 15 minutes of cycling or brisk walking to stay active
-              without overtraining.
-            </p>
-          </div>
-
-          <div className="card workout-card">
-            <h3>Notes</h3>
-            <p>
-              Remember to stay hydrated and give your muscles enough time to
-              recover after training.
-            </p>
-          </div>
+          {workouts.map((workout) => {
+            return (
+              <div className="card workout-card" key={workout.title}>
+                <h3>{workout.title}</h3>
+                <p>{workout.description}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
 

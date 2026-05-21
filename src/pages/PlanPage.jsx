@@ -1,27 +1,38 @@
+import { useState } from "react";
+
 const workouts = [
   {
-    title: 'Warm-Up',
+    title: "Warm-Up",
     description:
-      'Start with 5–10 minutes of light jogging and dynamic stretching to prepare your body for training.'
+      "Start with 5–10 minutes of light jogging and dynamic stretching to prepare your body for training.",
   },
   {
-    title: 'Main Workout',
+    title: "Main Workout",
     description:
-      'Spend 30 minutes on upper body strength exercises to support your muscle gain goal.'
+      "Spend 30 minutes on upper body strength exercises to support your muscle gain goal.",
   },
   {
-    title: 'Cardio / Recovery',
+    title: "Cardio / Recovery",
     description:
-      'Finish with 15 minutes of cycling or brisk walking to stay active without overtraining.'
+      "Finish with 15 minutes of cycling or brisk walking to stay active without overtraining.",
   },
   {
-    title: 'Notes',
+    title: "Notes",
     description:
-      'Remember to stay hydrated and give your muscles enough time to recover after training.'
-  }
+      "Remember to stay hydrated and give your muscles enough time to recover after training.",
+  },
 ];
 
 export default function PlanPage() {
+  const [completedWorkouts, setCompletedWorkouts] = useState({});
+
+  const toggleComplete = (title) => {
+    setCompletedWorkouts((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
+
   return (
     <main>
       <section className="welcome-banner">
@@ -35,13 +46,13 @@ export default function PlanPage() {
 
           <h1>Your Personalized Fitness Plan</h1>
           <p>
-            Based on your current goal and activity level, here’s a workout plan
+            Based on your current goal and activity level, here's a workout plan
             to guide your progress today.
           </p>
         </div>
 
         <div className="card accent-panel hero-summary">
-          <span className="panel-label">Today’s Focus</span>
+          <span className="panel-label">Today's Focus</span>
           <h2>Upper Body Strength</h2>
           <p>
             This plan emphasizes upper body training with enough recovery to
@@ -54,18 +65,30 @@ export default function PlanPage() {
         <section className="card">
           <h2>Goal Summary</h2>
           <div className="goal-details">
-            <p><strong>Primary Goal:</strong> Muscle Gain</p>
-            <p><strong>Activity Level:</strong> Moderate</p>
-            <p><strong>Calories Burned:</strong> 320 kcal</p>
+            <p>
+              <strong>Primary Goal:</strong> Muscle Gain
+            </p>
+            <p>
+              <strong>Activity Level:</strong> Moderate
+            </p>
+            <p>
+              <strong>Calories Burned:</strong> 320 kcal
+            </p>
           </div>
         </section>
 
         <section className="card">
           <h2>Activity Target</h2>
           <div className="target-details">
-            <p><strong>Daily Goal:</strong> 45 minutes</p>
-            <p><strong>Weekly Target:</strong> 4 workout sessions</p>
-            <p><strong>Focus Area:</strong> Upper Body Strength</p>
+            <p>
+              <strong>Daily Goal:</strong> 45 minutes
+            </p>
+            <p>
+              <strong>Weekly Target:</strong> 4 workout sessions
+            </p>
+            <p>
+              <strong>Focus Area:</strong> Upper Body Strength
+            </p>
           </div>
         </section>
       </div>
@@ -75,10 +98,43 @@ export default function PlanPage() {
 
         <div className="plan-card-grid">
           {workouts.map((workout) => {
+            const isCompleted = !!completedWorkouts[workout.title];
+
             return (
-              <div className="card workout-card" key={workout.title}>
+              <div
+                className={`card workout-card ${isCompleted ? "completed-task" : ""}`}
+                key={workout.title}
+                style={{
+                  borderLeft: isCompleted
+                    ? "5px solid #4CAF50"
+                    : "5px solid transparent",
+                  transition: "all 0.3s ease",
+                  opacity: isCompleted ? 0.7 : 1,
+                }}
+              >
                 <h3>{workout.title}</h3>
-                <p>{workout.description}</p>
+                <p
+                  style={{
+                    textDecoration: isCompleted ? "line-through" : "none",
+                  }}
+                >
+                  {workout.description}
+                </p>
+
+                <button
+                  onClick={() => toggleComplete(workout.title)}
+                  style={{
+                    marginTop: "10px",
+                    padding: "6px 12px",
+                    backgroundColor: isCompleted ? "#e0e0e0" : "#007FFF",
+                    color: isCompleted ? "#666" : "#fff",
+                    border: "none",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {isCompleted ? "✓ Completed" : "Mark as Done"}
+                </button>
               </div>
             );
           })}

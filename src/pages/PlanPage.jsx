@@ -23,6 +23,21 @@ const workouts = [
   },
 ];
 
+const currentPlan = {
+  goalName: "Muscle Gain",
+  activityLevel: "Moderate Activity",
+  activityLevelShort: "Moderate",
+  focus: "Upper Body Strength",
+  focusDescription:
+    "This plan emphasizes upper body training with enough recovery to support steady muscle growth.",
+  caloriesBurned: "320 kcal",
+  dailyGoal: "45 minutes",
+  weeklyTarget: "4 workout sessions",
+  focusArea: "Upper Body Strength",
+  guidance:
+    "This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.",
+};
+
 function WorkoutCard(props) {
   return (
     <div
@@ -77,9 +92,9 @@ export default function PlanPage() {
       <section className="welcome-banner">
         <div>
           <div className="welcome-badge-row">
-            <span className="status-chip">Muscle Gain</span>
+            <span className="status-chip">{currentPlan.goalName}</span>
             <span className="status-chip status-chip-soft">
-              Moderate Activity
+              {currentPlan.activityLevel}
             </span>
           </div>
 
@@ -92,11 +107,9 @@ export default function PlanPage() {
 
         <div className="card accent-panel hero-summary">
           <span className="panel-label">Today's Focus</span>
-          <h2>Upper Body Strength</h2>
-          <p>
-            This plan emphasizes upper body training with enough recovery to
-            support steady muscle growth.
-          </p>
+          <h2>{currentPlan.focus}</h2>
+          <p>{currentPlan.focusDescription}</p>
+
         </div>
       </section>
 
@@ -105,13 +118,13 @@ export default function PlanPage() {
           <h2>Goal Summary</h2>
           <div className="goal-details">
             <p>
-              <strong>Primary Goal:</strong> Muscle Gain
+              <strong>Primary Goal:</strong> {currentPlan.goalName}
             </p>
             <p>
-              <strong>Activity Level:</strong> Moderate
+              <strong>Activity Level:</strong> {currentPlan.activityLevelShort}
             </p>
             <p>
-              <strong>Calories Burned:</strong> 320 kcal
+              <strong>Calories Burned:</strong> {currentPlan.caloriesBurned}
             </p>
           </div>
         </section>
@@ -120,13 +133,13 @@ export default function PlanPage() {
           <h2>Activity Target</h2>
           <div className="target-details">
             <p>
-              <strong>Daily Goal:</strong> 45 minutes
+              <strong>Daily Goal:</strong> {currentPlan.dailyGoal}
             </p>
             <p>
-              <strong>Weekly Target:</strong> 4 workout sessions
+              <strong>Weekly Target:</strong> {currentPlan.weeklyTarget}
             </p>
             <p>
-              <strong>Focus Area:</strong> Upper Body Strength
+              <strong>Focus Area:</strong> {currentPlan.focusArea}
             </p>
           </div>
         </section>
@@ -153,11 +166,7 @@ export default function PlanPage() {
 
       <section className="card accent-panel guidance-note">
         <h2>Why This Plan Fits You</h2>
-        <p>
-          This plan is designed to help you build muscle through focused
-          strength training while keeping your overall activity balanced for the
-          day.
-        </p>
+        <p>{currentPlan.guidance}</p>
       </section>
     </main>
   );

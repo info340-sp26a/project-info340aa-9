@@ -23,6 +23,45 @@ const workouts = [
   },
 ];
 
+function WorkoutCard(props) {
+  return (
+    <div
+      className={`card workout-card ${props.isCompleted ? "completed-task" : ""}`}
+      style={{
+        borderLeft: props.isCompleted
+          ? "5px solid #4CAF50"
+          : "5px solid transparent",
+        transition: "all 0.3s ease",
+        opacity: props.isCompleted ? 0.7 : 1,
+      }}
+    >
+      <h3>{props.workout.title}</h3>
+      <p
+        style={{
+          textDecoration: props.isCompleted ? "line-through" : "none",
+        }}
+      >
+        {props.workout.description}
+      </p>
+
+      <button
+        onClick={() => props.onToggleComplete(props.workout.title)}
+        style={{
+          marginTop: "10px",
+          padding: "6px 12px",
+          backgroundColor: props.isCompleted ? "#e0e0e0" : "#007FFF",
+          color: props.isCompleted ? "#666" : "#fff",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+        }}
+      >
+        {props.isCompleted ? "✓ Completed" : "Mark as Done"}
+      </button>
+    </div>
+  );
+}
+
 export default function PlanPage() {
   const [completedWorkouts, setCompletedWorkouts] = useState({});
 
@@ -101,41 +140,12 @@ export default function PlanPage() {
             const isCompleted = !!completedWorkouts[workout.title];
 
             return (
-              <div
-                className={`card workout-card ${isCompleted ? "completed-task" : ""}`}
+              <WorkoutCard
                 key={workout.title}
-                style={{
-                  borderLeft: isCompleted
-                    ? "5px solid #4CAF50"
-                    : "5px solid transparent",
-                  transition: "all 0.3s ease",
-                  opacity: isCompleted ? 0.7 : 1,
-                }}
-              >
-                <h3>{workout.title}</h3>
-                <p
-                  style={{
-                    textDecoration: isCompleted ? "line-through" : "none",
-                  }}
-                >
-                  {workout.description}
-                </p>
-
-                <button
-                  onClick={() => toggleComplete(workout.title)}
-                  style={{
-                    marginTop: "10px",
-                    padding: "6px 12px",
-                    backgroundColor: isCompleted ? "#e0e0e0" : "#007FFF",
-                    color: isCompleted ? "#666" : "#fff",
-                    border: "none",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {isCompleted ? "✓ Completed" : "Mark as Done"}
-                </button>
-              </div>
+                workout={workout}
+                isCompleted={isCompleted}
+                onToggleComplete={toggleComplete}
+              />
             );
           })}
         </div>

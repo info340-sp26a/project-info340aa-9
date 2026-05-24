@@ -1,8 +1,11 @@
+import { useState } from "react";
+
 import NutritionForm from "../components/NutritionForm";
 import ActivityForm from "../components/ActivityForm";
 import LogList from "../components/LogList";
 
 function LogPage() {
+    const [logs, setLogs] = useState([]);
   return (
     <main>
 
@@ -19,7 +22,7 @@ function LogPage() {
         <NutritionForm />
         <ActivityForm />
       </div>
-      
+
       <LogList />
 
     </main>

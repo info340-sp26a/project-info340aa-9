@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function NutritionForm() {
+function NutritionForm({ addLog }) {
 
   const [foodName, setFoodName] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -9,12 +9,12 @@ function NutritionForm() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log({
+    addLog({
+      type: "food",
       foodName,
       quantity,
       calories
     });
-  }
 
   return (
     <section className="card">

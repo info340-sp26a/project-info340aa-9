@@ -23,7 +23,7 @@ function LogPage() {
       </section>
 
       <div className="logger-layout">
-        <NutritionForm />
+        <NutritionForm addLog={addLog} />
         <ActivityForm />
       </div>
 

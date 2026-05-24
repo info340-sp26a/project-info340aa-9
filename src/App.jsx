@@ -4,6 +4,7 @@ import PlanPage from './pages/PlanPage.jsx';
 import NutritionForm from './components/NutritionForm.jsx';
 import CommunityPage from './components/CommunityPage.jsx';
 import LogPage from './pages/LogPage.jsx';
+import Dashboard from './pages/DashboardPage.jsx';
 
 export default function App() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
         </header>
 
         <Routes>
-          {/* <Route path="/dashboard" element={< />} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/log" element={<LogPage />} />
           <Route path="/plan" element={<PlanPage />} />
           <Route path="/nutrition" element={<NutritionForm />} />

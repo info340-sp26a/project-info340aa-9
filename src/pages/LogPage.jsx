@@ -6,6 +6,10 @@ import LogList from "../components/LogList";
 
 function LogPage() {
     const [logs, setLogs] = useState([]);
+    function addLog(newLog) {
+        setLogs([...logs, newLog]);
+        console.log([...logs, newLog]);
+    }
   return (
     <main>
 

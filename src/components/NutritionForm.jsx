@@ -15,6 +15,7 @@ function NutritionForm({ addLog }) {
       quantity,
       calories
     });
+  }
 
   return (
     <section className="card">

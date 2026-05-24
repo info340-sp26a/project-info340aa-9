@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import PlanPage from './pages/PlanPage.jsx';
 import NutritionForm from './components/NutritionForm.jsx';
-import CommunityPage from './components/CommunityPage.jsx';
+import CommunityPage from './pages/CommunityPage.jsx';
 import LogPage from './pages/LogPage.jsx';
 import Dashboard from './pages/DashboardPage.jsx';
 

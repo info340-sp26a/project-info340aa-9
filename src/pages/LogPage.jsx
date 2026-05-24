@@ -14,6 +14,14 @@ function LogPage() {
           daily habits support your fitness goal.
         </p>
       </section>
+
+      <div className="logger-layout">
+        <NutritionForm />
+        <ActivityForm />
+      </div>
+      
+      <LogList />
+
     </main>
   );
 }

@@ -70,7 +70,6 @@ const planOptions = {
   },
 };
 
-const currentPlan = planOptions.muscleGain;
 
 function WorkoutCard(props) {
   return (
@@ -113,6 +112,9 @@ function WorkoutCard(props) {
 
 export default function PlanPage() {
   const [completedWorkouts, setCompletedWorkouts] = useState({});
+  const [selectedGoal, setSelectedGoal] = useState("muscleGain");
+
+  const currentPlan = planOptions[selectedGoal];
 
   const toggleComplete = (title) => {
     setCompletedWorkouts((prev) => ({
@@ -143,7 +145,27 @@ export default function PlanPage() {
           <span className="panel-label">Today's Focus</span>
           <h2>{currentPlan.focus}</h2>
           <p>{currentPlan.focusDescription}</p>
+        </div>
+      </section>
 
+      <section className="card">
+        <h2>Choose Your Goal</h2>
+
+        <div className="hero-pill-row">
+          <button type="button" onClick={() => setSelectedGoal("muscleGain")}>
+            Muscle Gain
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSelectedGoal("weightManagement")}
+          >
+            Weight Management
+          </button>
+
+          <button type="button" onClick={() => setSelectedGoal("healthyLiving")}>
+            Healthy Living
+          </button>
         </div>
       </section>
 

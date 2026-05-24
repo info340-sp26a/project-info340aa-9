@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import NutritionForm from "../components/NutritionForm";
-//import ActivityForm from "../components/ActivityForm";
+import ActivityForm from "../components/ActivityForm";
 import LogList from "../components/LogList";
 
 function LogPage() {

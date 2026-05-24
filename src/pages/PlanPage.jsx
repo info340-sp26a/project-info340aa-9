@@ -37,6 +37,7 @@ const planOptions = {
     focusArea: "Upper Body Strength",
     guidance:
       "This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.",
+    workouts: workouts,
   },
 
   weightManagement: {
@@ -52,7 +53,29 @@ const planOptions = {
     focusArea: "Cardio and Core",
     guidance:
       "This plan supports weight management by combining movement, consistency, and recovery instead of relying on extreme workouts.",
+    workouts: [
+  {
+    title: "Warm-Up",
+    description:
+      "Start with light walking and stretching so your body is ready for a longer workout.",
   },
+  {
+    title: "Cardio Training",
+    description:
+      "Choose a steady activity such as jogging, cycling, or brisk walking for about 25 minutes.",
+  },
+  {
+    title: "Core Strength",
+    description:
+      "Add simple core exercises like planks or bodyweight movements to support balance and control.",
+  },
+  {
+    title: "Cool Down",
+    description:
+      "Finish with slow stretching and take a few minutes to let your heart rate come down.",
+  },
+],
+},
 
   healthyLiving: {
     goalName: "Healthy Living",
@@ -67,9 +90,30 @@ const planOptions = {
     focusArea: "Mobility and Balance",
     guidance:
       "This plan is designed to help you maintain a balanced routine that supports everyday health and long-term consistency.",
+    workouts: [
+      {
+        title: "Gentle Warm-Up",
+        description:
+          "Begin with light stretching or a short walk to ease into the routine.",
+      },
+      {
+        title: "Daily Movement",
+        description:
+          "Spend time walking, doing yoga, or completing a light home workout that feels manageable.",
+      },
+      {
+        title: "Mobility Practice",
+        description:
+          "Add stretching or balance exercises to support flexibility and everyday movement.",
+      },
+      {
+        title: "Recovery Check",
+        description:
+          "End by focusing on hydration, rest, and how your body feels after the activity.",
+      },
+    ],
   },
 };
-
 
 function WorkoutCard(props) {
   return (
@@ -205,7 +249,7 @@ export default function PlanPage() {
         <h2>Today&apos;s Workout Plan</h2>
 
         <div className="plan-card-grid">
-          {workouts.map((workout) => {
+          {currentPlan.workouts.map((workout) => {
             const isCompleted = !!completedWorkouts[workout.title];
 
             return (

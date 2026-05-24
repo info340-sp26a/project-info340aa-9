@@ -23,20 +23,54 @@ const workouts = [
   },
 ];
 
-const currentPlan = {
-  goalName: "Muscle Gain",
-  activityLevel: "Moderate Activity",
-  activityLevelShort: "Moderate",
-  focus: "Upper Body Strength",
-  focusDescription:
-    "This plan emphasizes upper body training with enough recovery to support steady muscle growth.",
-  caloriesBurned: "320 kcal",
-  dailyGoal: "45 minutes",
-  weeklyTarget: "4 workout sessions",
-  focusArea: "Upper Body Strength",
-  guidance:
-    "This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.",
+const planOptions = {
+  muscleGain: {
+    goalName: "Muscle Gain",
+    activityLevel: "Moderate Activity",
+    activityLevelShort: "Moderate",
+    focus: "Upper Body Strength",
+    focusDescription:
+      "This plan emphasizes upper body training with enough recovery to support steady muscle growth.",
+    caloriesBurned: "320 kcal",
+    dailyGoal: "45 minutes",
+    weeklyTarget: "4 workout sessions",
+    focusArea: "Upper Body Strength",
+    guidance:
+      "This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.",
+  },
+
+  weightManagement: {
+    goalName: "Weight Management",
+    activityLevel: "Moderate Activity",
+    activityLevelShort: "Moderate",
+    focus: "Cardio and Core",
+    focusDescription:
+      "This plan balances steady cardio with simple strength exercises to support healthy calorie control.",
+    caloriesBurned: "380 kcal",
+    dailyGoal: "50 minutes",
+    weeklyTarget: "5 workout sessions",
+    focusArea: "Cardio and Core",
+    guidance:
+      "This plan supports weight management by combining movement, consistency, and recovery instead of relying on extreme workouts.",
+  },
+
+  healthyLiving: {
+    goalName: "Healthy Living",
+    activityLevel: "Light Activity",
+    activityLevelShort: "Light",
+    focus: "Daily Movement",
+    focusDescription:
+      "This plan focuses on building a consistent routine through light exercise, stretching, and recovery.",
+    caloriesBurned: "180 kcal",
+    dailyGoal: "30 minutes",
+    weeklyTarget: "4 light activity sessions",
+    focusArea: "Mobility and Balance",
+    guidance:
+      "This plan is designed to help you maintain a balanced routine that supports everyday health and long-term consistency.",
+  },
 };
+
+const currentPlan = planOptions.muscleGain;
 
 function WorkoutCard(props) {
   return (

@@ -1,9 +1,4 @@
 function DashboardFilter(props) {
-<<<<<<< HEAD
-  const dateOptions = props.dateOptions;
-
-=======
->>>>>>> e53424b427adc3cacdf7fbf08199cdf4d50f8431
   return (
     <section className="dashboard-controls card">
       <h2>Filter Your Progress</h2>
@@ -25,20 +20,6 @@ function DashboardFilter(props) {
 
         <div className="form-group">
           <label htmlFor="date-select">Select Date:</label>
-<<<<<<< HEAD
-          <select
-            id="date-select"
-            name="date"
-            value={props.selectedDate}
-            onChange={(event) => props.onDateChange(event.target.value)}
-          >
-            {dateOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-=======
           <input
             type="date"
             id="date-select"
@@ -48,7 +29,6 @@ function DashboardFilter(props) {
             max={props.dateMax}
             onChange={(event) => props.onDateChange(event.target.value)}
           />
->>>>>>> e53424b427adc3cacdf7fbf08199cdf4d50f8431
         </div>
 
         <div className="form-group">

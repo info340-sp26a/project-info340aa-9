@@ -1279,3 +1279,22 @@ body.landing-page {
     gap: 16px;
   }
 }
+
+.goal-button-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+}
+
+@media (min-width: 768px) {
+  .goal-button-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.goal-button-row button {
+  width: 100%;
+  min-width: 0;
+}

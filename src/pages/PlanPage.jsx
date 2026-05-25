@@ -198,7 +198,7 @@ export default function PlanPage() {
       <section className="card">
         <h2>Choose Your Goal</h2>
 
-        <div className="hero-pill-row">
+        <div className="goal-button-row">
           <button type="button" onClick={() => setSelectedGoal("muscleGain")}>
             Muscle Gain
           </button>

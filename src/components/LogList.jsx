@@ -1,16 +1,29 @@
 function LogList({ logs }) {
-
   return (
-    <section>
-      <h2>Activity Log</h2>
+    <section className="card log-section">
+      <h2>Recent Logs</h2>
 
-      {logs.map((log, index) => (
-        <div key={index}>
-          <h3>{log.foodName}</h3>
-          <p>{log.quantity}</p>
-          <p>{log.calories} calories</p>
-        </div>
-      ))}
+      {logs.length === 0 ? (
+        <p>No logs yet. Add a meal or activity to start tracking your progress.</p>
+      ) : (
+        logs.map((log, index) => (
+          <div className="card" key={index}>
+            {log.type === "food" ? (
+              <>
+                <h3>{log.foodName}</h3>
+                <p>Quantity: {log.quantity}</p>
+                <p>{log.calories} calories</p>
+              </>
+            ) : (
+              <>
+                <h3>{log.activityName}</h3>
+                <p>Duration: {log.duration}</p>
+                <p>{log.calories} calories burned</p>
+              </>
+            )}
+          </div>
+        ))
+      )}
     </section>
   );
 }

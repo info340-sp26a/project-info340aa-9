@@ -12,7 +12,7 @@ const initialChatData = [
     sender: "You", 
     text: "Hi Larissa! It's going well, just finished a great workout session. Check out this shot from my training! How about you?", 
     type: "sent",
-    img: "img/personal training.jpg",
+    img: "./img/personal training.jpg",
     alt: "A photo from personal training session"
   },
   { 

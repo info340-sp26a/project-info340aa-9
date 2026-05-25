@@ -23,19 +23,96 @@ const workouts = [
   },
 ];
 
-const currentPlan = {
-  goalName: "Muscle Gain",
-  activityLevel: "Moderate Activity",
-  activityLevelShort: "Moderate",
-  focus: "Upper Body Strength",
-  focusDescription:
-    "This plan emphasizes upper body training with enough recovery to support steady muscle growth.",
-  caloriesBurned: "320 kcal",
-  dailyGoal: "45 minutes",
-  weeklyTarget: "4 workout sessions",
-  focusArea: "Upper Body Strength",
-  guidance:
-    "This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.",
+const planOptions = {
+  muscleGain: {
+    goalName: "Muscle Gain",
+    activityLevel: "Moderate Activity",
+    activityLevelShort: "Moderate",
+    focus: "Upper Body Strength",
+    focusDescription:
+      "This plan emphasizes upper body training with enough recovery to support steady muscle growth.",
+    caloriesBurned: "320 kcal",
+    dailyGoal: "45 minutes",
+    weeklyTarget: "4 workout sessions",
+    focusArea: "Upper Body Strength",
+    guidance:
+      "This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.",
+    workouts: workouts,
+  },
+
+  weightManagement: {
+    goalName: "Weight Management",
+    activityLevel: "Moderate Activity",
+    activityLevelShort: "Moderate",
+    focus: "Cardio and Core",
+    focusDescription:
+      "This plan balances steady cardio with simple strength exercises to support healthy calorie control.",
+    caloriesBurned: "380 kcal",
+    dailyGoal: "50 minutes",
+    weeklyTarget: "5 workout sessions",
+    focusArea: "Cardio and Core",
+    guidance:
+      "This plan supports weight management by combining movement, consistency, and recovery instead of relying on extreme workouts.",
+    workouts: [
+  {
+    title: "Warm-Up",
+    description:
+      "Start with light walking and stretching so your body is ready for a longer workout.",
+  },
+  {
+    title: "Cardio Training",
+    description:
+      "Choose a steady activity such as jogging, cycling, or brisk walking for about 25 minutes.",
+  },
+  {
+    title: "Core Strength",
+    description:
+      "Add simple core exercises like planks or bodyweight movements to support balance and control.",
+  },
+  {
+    title: "Cool Down",
+    description:
+      "Finish with slow stretching and take a few minutes to let your heart rate come down.",
+  },
+],
+},
+
+  healthyLiving: {
+    goalName: "Healthy Living",
+    activityLevel: "Light Activity",
+    activityLevelShort: "Light",
+    focus: "Daily Movement",
+    focusDescription:
+      "This plan focuses on building a consistent routine through light exercise, stretching, and recovery.",
+    caloriesBurned: "180 kcal",
+    dailyGoal: "30 minutes",
+    weeklyTarget: "4 light activity sessions",
+    focusArea: "Mobility and Balance",
+    guidance:
+      "This plan is designed to help you maintain a balanced routine that supports everyday health and long-term consistency.",
+    workouts: [
+      {
+        title: "Gentle Warm-Up",
+        description:
+          "Begin with light stretching or a short walk to ease into the routine.",
+      },
+      {
+        title: "Daily Movement",
+        description:
+          "Spend time walking, doing yoga, or completing a light home workout that feels manageable.",
+      },
+      {
+        title: "Mobility Practice",
+        description:
+          "Add stretching or balance exercises to support flexibility and everyday movement.",
+      },
+      {
+        title: "Recovery Check",
+        description:
+          "End by focusing on hydration, rest, and how your body feels after the activity.",
+      },
+    ],
+  },
 };
 
 function WorkoutCard(props) {
@@ -79,6 +156,9 @@ function WorkoutCard(props) {
 
 export default function PlanPage() {
   const [completedWorkouts, setCompletedWorkouts] = useState({});
+  const [selectedGoal, setSelectedGoal] = useState("muscleGain");
+
+  const currentPlan = planOptions[selectedGoal];
 
   const toggleComplete = (title) => {
     setCompletedWorkouts((prev) => ({
@@ -109,7 +189,27 @@ export default function PlanPage() {
           <span className="panel-label">Today's Focus</span>
           <h2>{currentPlan.focus}</h2>
           <p>{currentPlan.focusDescription}</p>
+        </div>
+      </section>
 
+      <section className="card">
+        <h2>Choose Your Goal</h2>
+
+        <div className="hero-pill-row">
+          <button type="button" onClick={() => setSelectedGoal("muscleGain")}>
+            Muscle Gain
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSelectedGoal("weightManagement")}
+          >
+            Weight Management
+          </button>
+
+          <button type="button" onClick={() => setSelectedGoal("healthyLiving")}>
+            Healthy Living
+          </button>
         </div>
       </section>
 
@@ -149,7 +249,7 @@ export default function PlanPage() {
         <h2>Today&apos;s Workout Plan</h2>
 
         <div className="plan-card-grid">
-          {workouts.map((workout) => {
+          {currentPlan.workouts.map((workout) => {
             const isCompleted = !!completedWorkouts[workout.title];
 
             return (

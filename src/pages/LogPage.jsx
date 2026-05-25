@@ -24,7 +24,7 @@ function LogPage() {
 
       <div className="logger-layout">
         <NutritionForm addLog={addLog} />
-        <ActivityForm />
+        {/* <ActivityForm /> */}
       </div>
 
       <LogList logs={logs} />

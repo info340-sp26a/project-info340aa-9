@@ -42,6 +42,16 @@ export default function CommunityPage() {
       setChatInput(""); 
     }
   }
+  
+function handleShareButtonClick(logName) {
+    const sharedMsg = {
+      id: messages.length + 1,
+      sender: "You",
+      text: "[Shared] " + logName + " data has been sent to this chat.",
+      type: "sent"
+    };
+    setMessages([...messages, sharedMsg]);
+  }
 
   return (
     <main>

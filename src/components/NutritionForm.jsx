@@ -62,6 +62,5 @@ function NutritionForm({ addLog }) {
     </section>
   );
 }
-}
 
 export default NutritionForm;

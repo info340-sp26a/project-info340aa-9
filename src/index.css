@@ -704,7 +704,7 @@ table button {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 600px;
+  height: 800px;
 }
 
 .chat-input-form {

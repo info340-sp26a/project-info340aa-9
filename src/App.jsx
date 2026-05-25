@@ -27,6 +27,7 @@ export default function App() {
         </header>
 
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/log" element={<LogPage />} />
           <Route path="/plan" element={<PlanPage />} />

@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 
 function ProgressChart(props) {
   const percentage = props.percentage;
@@ -27,12 +26,16 @@ function ProgressChart(props) {
 
 function DashboardSummary(props) {
   const calorieInfo = props.user.calorieInfo;
+  const metricQuery = props.metricQuery.trim().toLowerCase();
   const statItems = [
     { label: 'Target', value: `${calorieInfo.target} kcal` },
     { label: 'Intake', value: `${calorieInfo.intake} kcal` },
     { label: 'Burned', value: `${calorieInfo.burned} kcal` },
     { label: 'Remaining', value: `${calorieInfo.remaining} kcal` },
   ];
+  const visibleStatItems = metricQuery
+    ? statItems.filter((item) => item.label.toLowerCase().includes(metricQuery))
+    : statItems;
 
   return (
     <section className="card dashboard-summary-card">
@@ -41,40 +44,19 @@ function DashboardSummary(props) {
         <ProgressChart percentage={calorieInfo.percentage} />
       </div>
       <div className="dashboard-summary-stats">
-        {statItems.map((item) => (
-          <div className="stat-item" key={item.label}>
-            <span className="stat-label">{item.label}</span>
-            <span className="stat-value">{item.value}</span>
-          </div>
-        ))}
+        {visibleStatItems.length > 0 ? (
+          visibleStatItems.map((item) => (
+            <div className="stat-item" key={item.label}>
+              <span className="stat-label">{item.label}</span>
+              <span className="stat-value">{item.value}</span>
+            </div>
+          ))
+        ) : (
+          <p className="stat-empty-state">No matching calorie metric found.</p>
+        )}
       </div>
     </section>
   );
 }
 
-function PlanPreview() {
-  return (
-    <section className="card plan-preview">
-        <h2>Plan Preview</h2>
-        <div className="preview-content">
-          <p>
-            <strong>Focus:</strong> Resistance Training
-          </p>
-          <p>
-            Current analysis suggests increasing protein intake by 15% today.
-          </p>
-          </div>
-        <Link to="/plan" className="cta-link">View Full Plan Details &rarr;</Link>
-      </section>
-  );
-}
-function DashboardGrid(props) {
-  return (
-    <div className="dashboard-grid">
-      <DashboardSummary user={props.user} />
-      <PlanPreview />
-    </div>
-  );
-}
-
-export default DashboardGrid;
+export default DashboardSummary;

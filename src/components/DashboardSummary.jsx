@@ -27,6 +27,7 @@ function ProgressChart(props) {
 function DashboardSummary(props) {
   const calorieInfo = props.user.calorieInfo;
   const metricQuery = props.metricQuery.trim().toLowerCase();
+  const summaryTitle = props.summaryTitle ?? "Daily Summary";
   const statItems = [
     { label: 'Target', value: `${calorieInfo.target} kcal` },
     { label: 'Intake', value: `${calorieInfo.intake} kcal` },
@@ -39,7 +40,7 @@ function DashboardSummary(props) {
 
   return (
     <section className="card dashboard-summary-card">
-      <h2 className="dashboard-summary-title">Daily Summary</h2>
+      <h2 className="dashboard-summary-title">{summaryTitle}</h2>
       <div className="dashboard-summary-chart">
         <ProgressChart percentage={calorieInfo.percentage} />
       </div>

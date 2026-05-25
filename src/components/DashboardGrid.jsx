@@ -1,20 +1,21 @@
-function DashboardGrid() {
-  return (
-    <div className="dashboard-grid">
-      <section className="card chart-view">
+import { Link } from 'react-router';
+function DailyAchievement() {
+  return (<section className="card chart-view">
         <h2>Daily Achievement</h2>
         <figure>
           <img
-            src="img/progress-chart.svg"
+            src="../img/progress-chart.svg"
             alt="Doughnut chart showing 75% goal completion for the day"
           />
           <figcaption>
             Daily progress based on your Muscle Gain goal.
           </figcaption>
         </figure>
-      </section>
+      </section>);
+}
 
-      <section className="card calorie-box">
+function CalorieOverview() {
+  return(<section className="card calorie-box">
         <h2>Calorie Overview</h2>
         <div className="stats-container">
           <div className="stat-item">
@@ -26,9 +27,12 @@ function DashboardGrid() {
             <span className="stat-value">600 kcal</span>
           </div>
         </div>
-      </section>
+      </section>);
+}
 
-      <section className="card plan-preview">
+function PlanPreview() {
+  return(
+   <section className="card plan-preview">
         <h2>Plan Preview</h2>
         <div className="preview-content">
           <p>
@@ -38,10 +42,15 @@ function DashboardGrid() {
             Current analysis suggests increasing protein intake by 15% today.
           </p>
         </div>
-        <a href="plan.html" className="cta-link">
-          View Full Plan Details &rarr;
-        </a>
-      </section>
+        <Link to="/plan" className="cta-link">View Full Plan Details &rarr;</Link>
+      </section>);
+}
+function DashboardGrid() {
+  return (
+    <div className="dashboard-grid">
+      <DailyAchievement />
+      <CalorieOverview />
+      <PlanPreview />
     </div>
   );
 }

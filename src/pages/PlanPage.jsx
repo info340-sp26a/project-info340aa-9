@@ -139,13 +139,16 @@ function WorkoutCard(props) {
       <button
         onClick={() => props.onToggleComplete(props.workout.title)}
         style={{
-          marginTop: "10px",
-          padding: "6px 12px",
-          backgroundColor: props.isCompleted ? "#e0e0e0" : "#007FFF",
-          color: props.isCompleted ? "#666" : "#fff",
+          marginTop: "1rem",
+          padding: "0.65rem 1.1rem",
+          backgroundColor: props.isCompleted ? "#e8e8e8" : "var(--accent)",
+          color: props.isCompleted ? "#555" : "#fff",
           border: "none",
-          borderRadius: "4px",
+          borderRadius: "999px",
           cursor: "pointer",
+          boxShadow: props.isCompleted
+            ? "none"
+            : "0 14px 30px rgba(29, 71, 55, 0.16)",
         }}
       >
         {props.isCompleted ? "✓ Completed" : "Mark as Done"}

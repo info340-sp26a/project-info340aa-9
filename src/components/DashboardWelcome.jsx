@@ -1,4 +1,4 @@
-function DashboardWelcome() {
+function DashboardWelcome(props) {
   return (
     <section className="welcome-banner">
       <div>
@@ -6,17 +6,17 @@ function DashboardWelcome() {
           <span className="status-chip">Muscle Gain</span>
           <span className="status-chip status-chip-soft">5-day streak</span>
         </div>
-        <h1>Welcome back, Larissa!</h1>
+        <h1>Welcome back, {props.user.name}!</h1>
         <p>
           Your unified health system is updated with today's dietary and
           training insights.
         </p>
         <div className="hero-pill-row">
           <span className="status-pill">
-            Daily goal: <strong>75% complete</strong>
+            Daily goal: <strong>{props.user.calorieInfo.percentage}% complete</strong>
           </span>
           <span className="status-pill status-pill-soft">
-            Target calories: <strong>2,500 kcal</strong>
+            Target calories: <strong>{props.user.calorieInfo.target} kcal</strong>
           </span>
         </div>
       </div>

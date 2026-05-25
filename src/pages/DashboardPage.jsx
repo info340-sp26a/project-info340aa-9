@@ -5,11 +5,29 @@ import DashboardSummary from "../components/DashboardSummary";
 import DashboardPlan from "../components/DashboardPlan";
 
 function toDateKey(date) {
+<<<<<<< HEAD
   return date.toISOString().slice(0, 10);
 }
 
 function formatDateLabel(dateKey) {
   return new Date(`${dateKey}T00:00:00`).toLocaleDateString(undefined, {
+=======
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function parseDateKey(dateKey) {
+  const [year, month, day] = dateKey.split("-").map(Number);
+
+  return new Date(year, month - 1, day);
+}
+
+function formatDateLabel(dateKey) {
+  return parseDateKey(dateKey).toLocaleDateString(undefined, {
+>>>>>>> e53424b427adc3cacdf7fbf08199cdf4d50f8431
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -38,7 +56,11 @@ function generateCalorieHistory(days, targetCalories) {
   });
 }
 
+<<<<<<< HEAD
 function enrichCalorieInfo(calorieInfo) {
+=======
+function fillCalorieInfo(calorieInfo) {
+>>>>>>> e53424b427adc3cacdf7fbf08199cdf4d50f8431
   const remaining = calorieInfo.target - calorieInfo.intake;
   const percentage =
     calorieInfo.target > 0
@@ -76,6 +98,7 @@ function DashboardPage() {
       year: 365,
     };
     const daysToInclude = daysByPeriod[period] ?? 7;
+<<<<<<< HEAD
     const latestDate = new Date(`${calorieHistory[calorieHistory.length - 1].date}T00:00:00`);
     const cutoff = new Date(latestDate);
     cutoff.setDate(latestDate.getDate() - (daysToInclude - 1));
@@ -95,6 +118,30 @@ function DashboardPage() {
   const activeSelectedDate = dateOptions.some((option) => option.value === selectedDate)
     ? selectedDate
     : (dateOptions[0]?.value ?? "");
+=======
+    const latestDate = parseDateKey(calorieHistory[calorieHistory.length - 1].date);
+    const cutoff = new Date(latestDate);
+    cutoff.setDate(latestDate.getDate() - (daysToInclude - 1));
+
+    return calorieHistory.filter((entry) => parseDateKey(entry.date) >= cutoff);
+  }, [calorieHistory, period]);
+
+  const availableDates = useMemo(
+    () => new Set(filteredHistory.map((entry) => entry.date)),
+    [filteredHistory]
+  );
+  const dateMin = filteredHistory[0]?.date ?? "";
+  const dateMax = filteredHistory[filteredHistory.length - 1]?.date ?? "";
+
+  const [selectedDate, setSelectedDate] = useState("");
+  const activeSelectedDate = availableDates.has(selectedDate) ? selectedDate : dateMax;
+  const todayKey = toDateKey(new Date());
+  const summaryTitle = activeSelectedDate
+    ? activeSelectedDate === todayKey
+      ? "Daily Summary for Today"
+      : `Daily Summary for ${formatDateLabel(activeSelectedDate)}`
+    : "Daily Summary";
+>>>>>>> e53424b427adc3cacdf7fbf08199cdf4d50f8431
 
   const selectedEntry =
     filteredHistory.find((entry) => entry.date === activeSelectedDate) ??
@@ -102,7 +149,11 @@ function DashboardPage() {
 
   const user = {
     name: userProfile.name,
+<<<<<<< HEAD
     calorieInfo: enrichCalorieInfo(
+=======
+    calorieInfo: fillCalorieInfo(
+>>>>>>> e53424b427adc3cacdf7fbf08199cdf4d50f8431
       selectedEntry?.calorieInfo ?? {
         target: userProfile.calorieTarget,
         intake: 0,
@@ -120,11 +171,20 @@ function DashboardPage() {
           onPeriodChange={setPeriod}
           selectedDate={activeSelectedDate}
           onDateChange={setSelectedDate}
+<<<<<<< HEAD
           dateOptions={dateOptions}
           metricQuery={metricQuery}
           onMetricQueryChange={setMetricQuery}
         />
         <DashboardSummary user={user} metricQuery={metricQuery} />
+=======
+          dateMin={dateMin}
+          dateMax={dateMax}
+          metricQuery={metricQuery}
+          onMetricQueryChange={setMetricQuery}
+        />
+        <DashboardSummary user={user} metricQuery={metricQuery} summaryTitle={summaryTitle} />
+>>>>>>> e53424b427adc3cacdf7fbf08199cdf4d50f8431
         <DashboardPlan />
       </main>
     </div>

@@ -27,7 +27,7 @@ function LogPage() {
         <ActivityForm addLog={addLog} />
       </div>
 
-      <LogList logs={logs} />
+      <LogList logs={logs} title="Activity Log"/>
 
     </main>
   );

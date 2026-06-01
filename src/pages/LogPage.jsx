@@ -8,7 +8,6 @@ function LogPage() {
     const [logs, setLogs] = useState([]);
     function addLog(newLog) {
         setLogs([...logs, newLog]);
-        console.log([...logs, newLog]);
     }
   return (
     <main>
@@ -27,7 +26,7 @@ function LogPage() {
         <ActivityForm addLog={addLog} />
       </div>
 
-      <LogList logs={logs} title="Activity Log"/>
+      <LogList logs={logs} />
 
     </main>
   );

@@ -1,33 +1,21 @@
-function LogList({ logs, title }) {
+import LogCard from "./LogCard";
 
-  const logComponents = logs.map((log) => {
+function LogList({ logs }) {
+  const logComponents = logs.map((log, index) => {
+    const elem = (
+    <LogCard
+      key={index}
+      log={log}
+    />
+  );
 
-    let elem = "";
-    if (log.type === "food") {
-      elem = (
-        <div key={log.foodName}>
-          <h3>{log.foodName}</h3>
-          <p>Quantity: {log.quantity}</p>
-          <p>{log.calories} calories</p>
-        </div>
-      );
-    } else {
-      elem = (
-        <div key={log.activityName}>
-          <h3>{log.activityName}</h3>
-          <p>Duration: {log.duration}</p>
-          <p>{log.calories} calories burned</p>
-        </div>
-      );
-    }
-
-    return elem;
-  });
+  return elem;
+});
 
   return (
     <section>
 
-      <h2>{title}</h2>
+      <h2>Activity Log</h2>
 
       {logComponents}
 

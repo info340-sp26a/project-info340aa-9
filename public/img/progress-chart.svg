@@ -1,0 +1,17 @@
+<svg width="640" height="480" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chartTitle">
+  <title id="chartTitle">Progress chart showing daily achievement</title>
+  <defs>
+    <linearGradient id="shadowGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f7f8"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="32" fill="#f4f4f5" />
+  <rect x="40" y="40" width="560" height="400" rx="28" fill="url(#shadowGradient)" stroke="#d9d9db" stroke-width="2"/>
+  <circle cx="320" cy="260" r="120" fill="none" stroke="#a8a8ac" stroke-width="24" opacity="0.35"/>
+  <path d="M 320 140 A 120 120 0 0 1 420 220" fill="none" stroke="#1d4737" stroke-width="24" stroke-linecap="round"/>
+  <path d="M 320 140 A 120 120 0 0 0 220 220" fill="none" stroke="#b56f8a" stroke-width="24" stroke-linecap="round" opacity="0.22"/>
+  <circle cx="320" cy="260" r="72" fill="#ffffff" stroke="#dedfe1" stroke-width="6"/>
+  <text x="320" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="44" font-weight="700" fill="#1c1c1c">75%</text>
+  <text x="320" y="320" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#55606a">Daily Goal</text>
+</svg>

@@ -8,7 +8,6 @@ function LogPage() {
     const [logs, setLogs] = useState([]);
     function addLog(newLog) {
         setLogs([...logs, newLog]);
-        console.log([...logs, newLog]);
     }
   return (
     <main>
@@ -24,7 +23,7 @@ function LogPage() {
 
       <div className="logger-layout">
         <NutritionForm addLog={addLog} />
-        <ActivityForm />
+        <ActivityForm addLog={addLog} />
       </div>
 
       <LogList logs={logs} />

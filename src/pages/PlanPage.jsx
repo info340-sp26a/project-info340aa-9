@@ -116,41 +116,31 @@ const planOptions = {
 };
 
 function WorkoutCard(props) {
+  let cardClassName = "card workout-card";
+  let descriptionClassName = "workout-description";
+  let buttonClassName = "workout-toggle-button";
+
+  if (props.isCompleted) {
+    cardClassName += " completed-workout-card";
+    descriptionClassName += " completed-workout-description";
+    buttonClassName += " completed-workout-button";
+  }
+
   return (
-    <div
-      className={`card workout-card ${props.isCompleted ? "completed-task" : ""}`}
-      style={{
-        borderLeft: props.isCompleted
-          ? "5px solid #4CAF50"
-          : "5px solid transparent",
-        transition: "all 0.3s ease",
-        opacity: props.isCompleted ? 0.7 : 1,
-      }}
-    >
+  <div className={cardClassName}>
+
       <h3>{props.workout.title}</h3>
-      <p
-        style={{
-          textDecoration: props.isCompleted ? "line-through" : "none",
-        }}
-      >
+
+      <p className={descriptionClassName}>
         {props.workout.description}
       </p>
 
       <button
+        type="button"
+        className={buttonClassName}
         onClick={() => props.onToggleComplete(props.workout.title)}
-        style={{
-          marginTop: "1rem",
-          padding: "0.65rem 1.1rem",
-          backgroundColor: props.isCompleted ? "#e8e8e8" : "var(--accent)",
-          color: props.isCompleted ? "#555" : "#fff",
-          border: "none",
-          borderRadius: "999px",
-          cursor: "pointer",
-          boxShadow: props.isCompleted
-            ? "none"
-            : "0 14px 30px rgba(29, 71, 55, 0.16)",
-        }}
       >
+
         {props.isCompleted ? "✓ Completed" : "Mark as Done"}
       </button>
     </div>
@@ -163,12 +153,27 @@ export default function PlanPage() {
 
   const currentPlan = planOptions[selectedGoal];
 
-  const toggleComplete = (title) => {
-    setCompletedWorkouts((prev) => ({
-      ...prev,
-      [title]: !prev[title],
-    }));
-  };
+  function toggleComplete(title) {
+    setCompletedWorkouts(function(prev) {
+      return {
+        ...prev,
+        [title]: !prev[title],
+      };
+    });
+  }
+
+  const workoutCards = currentPlan.workouts.map(function(workout) {
+    const isCompleted = !!completedWorkouts[workout.title];
+
+    return (
+      <WorkoutCard
+        key={workout.title}
+        workout={workout}
+        isCompleted={isCompleted}
+        onToggleComplete={toggleComplete}
+      />
+    );
+  });
 
   return (
     <main>
@@ -252,18 +257,7 @@ export default function PlanPage() {
         <h2>Today&apos;s Workout Plan</h2>
 
         <div className="plan-card-grid">
-          {currentPlan.workouts.map((workout) => {
-            const isCompleted = !!completedWorkouts[workout.title];
-
-            return (
-              <WorkoutCard
-                key={workout.title}
-                workout={workout}
-                isCompleted={isCompleted}
-                onToggleComplete={toggleComplete}
-              />
-            );
-          })}
+          {workoutCards}
         </div>
       </section>
 

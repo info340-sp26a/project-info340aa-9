@@ -1298,3 +1298,39 @@ body.landing-page {
   width: 100%;
   min-width: 0;
 }
+
+.workout-card {
+  border-left: 5px solid transparent;
+  transition: var(--transition);
+}
+
+.completed-workout-card {
+  border-left-color: #4caf50;
+  opacity: 0.7;
+}
+
+.workout-description {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.completed-workout-description {
+  text-decoration: line-through;
+}
+
+.workout-toggle-button {
+  margin-top: 1rem;
+  padding: 0.65rem 1.1rem;
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(29, 71, 55, 0.16);
+}
+
+.completed-workout-button {
+  background-color: #e8e8e8;
+  color: #555555;
+  box-shadow: none;
+}

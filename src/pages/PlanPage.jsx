@@ -37,6 +37,12 @@ const planOptions = {
     focusArea: "Upper Body Strength",
     guidance:
       "This plan is designed to help you build muscle through focused strength training while keeping your overall activity balanced for the day.",
+    nutritionTip:
+      "Prioritize protein-rich meals today to support muscle repair after strength training.",
+    recoveryTip:
+      "Give your upper body enough rest between intense sessions so your muscles can rebuild.",
+    progressTip:
+      "Track completed strength workouts this week and aim for steady consistency instead of rushing progress.",
     workouts: workouts,
   },
 
@@ -53,6 +59,12 @@ const planOptions = {
     focusArea: "Cardio and Core",
     guidance:
       "This plan supports weight management by combining movement, consistency, and recovery instead of relying on extreme workouts.",
+    nutritionTip:
+      "Choose balanced meals with vegetables, lean protein, and steady portions to support calorie control.",
+    recoveryTip:
+      "Use lighter movement or stretching after cardio sessions so your routine stays sustainable.",
+    progressTip:
+      "Focus on weekly consistency and compare your activity patterns over time instead of judging one day.",
     workouts: [
       {
         title: "Warm-Up",
@@ -90,6 +102,12 @@ const planOptions = {
     focusArea: "Mobility and Balance",
     guidance:
       "This plan is designed to help you maintain a balanced routine that supports everyday health and long-term consistency.",
+    nutritionTip:
+      "Keep meals simple and balanced so your routine feels realistic for everyday life.",
+    recoveryTip:
+      "Include gentle stretching, hydration, and rest to make healthy movement feel sustainable.",
+    progressTip:
+      "Notice small wins, such as walking more often or completing light sessions consistently.",
     workouts: [
       {
         title: "Gentle Warm-Up",
@@ -266,6 +284,30 @@ export default function PlanPage() {
 
         <div className="plan-card-grid">
           {workoutCards}
+        </div>
+      </section>
+
+      <section className="card recommendation-panel">
+        <h2>Goal-Based Recommendations</h2>
+        <p>
+          These suggestions update when you choose a different fitness goal.
+        </p>
+
+        <div className="recommendation-grid">
+          <article className="recommendation-item">
+            <h3>Nutrition Support</h3>
+            <p>{currentPlan.nutritionTip}</p>
+          </article>
+
+          <article className="recommendation-item">
+            <h3>Recovery Reminder</h3>
+            <p>{currentPlan.recoveryTip}</p>
+          </article>
+
+          <article className="recommendation-item">
+            <h3>Progress Tip</h3>
+            <p>{currentPlan.progressTip}</p>
+          </article>
         </div>
       </section>
 

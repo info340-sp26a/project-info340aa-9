@@ -54,28 +54,28 @@ const planOptions = {
     guidance:
       "This plan supports weight management by combining movement, consistency, and recovery instead of relying on extreme workouts.",
     workouts: [
-  {
-    title: "Warm-Up",
-    description:
-      "Start with light walking and stretching so your body is ready for a longer workout.",
+      {
+        title: "Warm-Up",
+        description:
+          "Start with light walking and stretching so your body is ready for a longer workout.",
+      },
+      {
+        title: "Cardio Training",
+        description:
+          "Choose a steady activity such as jogging, cycling, or brisk walking for about 25 minutes.",
+      },
+      {
+        title: "Core Strength",
+        description:
+          "Add simple core exercises like planks or bodyweight movements to support balance and control.",
+      },
+      {
+        title: "Cool Down",
+        description:
+          "Finish with slow stretching and take a few minutes to let your heart rate come down.",
+      },
+    ],
   },
-  {
-    title: "Cardio Training",
-    description:
-      "Choose a steady activity such as jogging, cycling, or brisk walking for about 25 minutes.",
-  },
-  {
-    title: "Core Strength",
-    description:
-      "Add simple core exercises like planks or bodyweight movements to support balance and control.",
-  },
-  {
-    title: "Cool Down",
-    description:
-      "Finish with slow stretching and take a few minutes to let your heart rate come down.",
-  },
-],
-},
 
   healthyLiving: {
     goalName: "Healthy Living",
@@ -127,8 +127,7 @@ function WorkoutCard(props) {
   }
 
   return (
-  <div className={cardClassName}>
-
+    <div className={cardClassName}>
       <h3>{props.workout.title}</h3>
 
       <p className={descriptionClassName}>
@@ -140,7 +139,6 @@ function WorkoutCard(props) {
         className={buttonClassName}
         onClick={() => props.onToggleComplete(props.workout.title)}
       >
-
         {props.isCompleted ? "✓ Completed" : "Mark as Done"}
       </button>
     </div>
@@ -160,6 +158,10 @@ export default function PlanPage() {
         [title]: !prev[title],
       };
     });
+  }
+
+  function handleGoalChange(goalKey) {
+    setSelectedGoal(goalKey);
   }
 
   const workoutCards = currentPlan.workouts.map(function(workout) {
@@ -204,18 +206,24 @@ export default function PlanPage() {
         <h2>Choose Your Goal</h2>
 
         <div className="goal-button-row">
-          <button type="button" onClick={() => setSelectedGoal("muscleGain")}>
+          <button
+            type="button"
+            onClick={() => handleGoalChange("muscleGain")}
+          >
             Muscle Gain
           </button>
 
           <button
             type="button"
-            onClick={() => setSelectedGoal("weightManagement")}
+            onClick={() => handleGoalChange("weightManagement")}
           >
             Weight Management
           </button>
 
-          <button type="button" onClick={() => setSelectedGoal("healthyLiving")}>
+          <button
+            type="button"
+            onClick={() => handleGoalChange("healthyLiving")}
+          >
             Healthy Living
           </button>
         </div>

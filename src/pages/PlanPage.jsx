@@ -182,6 +182,16 @@ export default function PlanPage() {
     setSelectedGoal(goalKey);
   }
 
+  function getGoalButtonClassName(goalKey) {
+    let buttonClassName = "goal-button";
+
+    if (selectedGoal === goalKey) {
+      buttonClassName += " selected-goal-button";
+    }
+
+    return buttonClassName;
+  }
+
   const workoutCards = currentPlan.workouts.map(function(workout) {
     const isCompleted = !!completedWorkouts[workout.title];
 
@@ -226,6 +236,8 @@ export default function PlanPage() {
         <div className="goal-button-row">
           <button
             type="button"
+            className={getGoalButtonClassName("muscleGain")}
+            aria-pressed={selectedGoal === "muscleGain"}
             onClick={() => handleGoalChange("muscleGain")}
           >
             Muscle Gain
@@ -233,6 +245,8 @@ export default function PlanPage() {
 
           <button
             type="button"
+            className={getGoalButtonClassName("weightManagement")}
+            aria-pressed={selectedGoal === "weightManagement"}
             onClick={() => handleGoalChange("weightManagement")}
           >
             Weight Management
@@ -240,6 +254,8 @@ export default function PlanPage() {
 
           <button
             type="button"
+            className={getGoalButtonClassName("healthyLiving")}
+            aria-pressed={selectedGoal === "healthyLiving"}
             onClick={() => handleGoalChange("healthyLiving")}
           >
             Healthy Living

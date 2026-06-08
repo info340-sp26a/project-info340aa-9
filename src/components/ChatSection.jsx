@@ -8,9 +8,15 @@ export default function ChatSection({ messages, chatInput, setChatInput, handleS
     return (
       <Link 
       key={msg.id}
-      to={"/community/" + msg.id}>
+      to={"/community/" + msg.id}
+      className={"chat-" + msg.type}
+      style={{ 
+          textDecoration: 'none',       
+          display: 'block',
+          color: msg.type === "sent" ? "white" : "inherit"      
+        }}
+        >
       
-      <div className={"chat-" + msg.type}>
         <span className="sender">{msg.sender}</span>
 
         {msg.img ? (
@@ -22,7 +28,6 @@ export default function ChatSection({ messages, chatInput, setChatInput, handleS
         ) : null}
 
         <p>{msg.text}</p>
-        </div>
       </Link>
     );
   });

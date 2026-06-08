@@ -23,7 +23,7 @@ export default function CommunityPage({ messages, setMessages, selectedGoal, log
         type: "sent"
       };
 
-      setMessages([...messages, newMsg]);
+      setMessages(newMsg);
       setChatInput(""); 
     }
   }
@@ -80,7 +80,8 @@ export default function CommunityPage({ messages, setMessages, selectedGoal, log
         type: "sent"
       };
       
-      setMessages([...messages, sharedMsg]);
+      // setMessages([...messages, sharedMsg]);
+      onSendMessage(sharedMsg);
     }
   }
 

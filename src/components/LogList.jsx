@@ -1,18 +1,12 @@
 import LogCard from "./LogCard";
 
-function LogList({ logs, title }) {
+function LogList({ logs, title, onDeleteLog }) {
   const logCards = logs.map((log) => {
-    let logKey = "";
-    if (log.type === "food") {
-      logKey = log.foodName;
-    }
-    else {
-      logKey = log.activityName;
-    }
     return (
       <LogCard
-        key={logKey}
+        key={log.key}
         log={log}
+        onDeleteLog={onDeleteLog}
       />
     );
   });

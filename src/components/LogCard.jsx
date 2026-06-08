@@ -1,4 +1,4 @@
-function LogCard({ log }) {
+function LogCard({ log, onDeleteLog }) {
   let elem = "";
 
   if (log.type === "food") {
@@ -13,6 +13,14 @@ function LogCard({ log }) {
         <p>
           {log.calories} calories
         </p>
+
+        <button
+          onClick={() => {
+            onDeleteLog(log.key);
+          }}
+        >
+          Delete
+        </button>
       </section>
     );
   }
@@ -28,6 +36,13 @@ function LogCard({ log }) {
         <p>
           {log.calories} calories burned
         </p>
+        <button
+          onClick={() => {
+            onDeleteLog(log.key);
+          }}
+        >
+          Delete
+        </button>
       </section>
     );
   }

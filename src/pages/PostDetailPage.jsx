@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router';
 export default function PostDetailPage({ messages }) {
   const { id } = useParams();
   const post = messages.find(function(msg) {
-    return msg.id === Number(id);
+    return String(msg.id) === id;
   });
  
   if (!post) {

@@ -17,7 +17,6 @@ export default function CommunityPage({ messages, setMessages, selectedGoal, log
     
     if (chatInput.trim() !== "") {
       const newMsg = {
-        id: messages.length + 1,
         sender: "You",
         text: chatInput,
         type: "sent"
@@ -74,7 +73,6 @@ export default function CommunityPage({ messages, setMessages, selectedGoal, log
 
     if (sharedText !== "") {
       const sharedMsg = {
-        id: messages.length + 1,
         sender: "You",
         text: sharedText,
         type: "sent"

@@ -27,6 +27,14 @@
   color: var(--text-main) !important;
 }
 
+.text-color-accent {
+  color: var(--accent) !important;
+}
+
+.text-color-muted {
+  color: var(--text-muted) !important
+}
+
 .background-color-surface-soft {
   background: var(--surface-soft) !important;
 }
@@ -414,30 +422,6 @@ button:hover {
   gap: 1.75rem;
 }
 
-.dashboard-summary-card {
-  display: grid;
-  gap: 1.5rem;
-  background: #fff;
-  align-items: center;
-}
-
-.dashboard-summary-title {
-  margin: 0;
-  text-align: center;
-  grid-column: 1 / -1;
-}
-
-.dashboard-summary-chart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dashboard-summary-stats {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
 
 .dashboard-progress-ring {
   position: relative;
@@ -451,36 +435,23 @@ button:hover {
   transform: rotate(-90deg);
 }
 
-.dashboard-summary-card .stat-item {
-  min-width: 0;
+.progress-bar-stroke {
+  stroke: var(--accent);
+  stroke-width: 12;
+  fill: none;
+  stroke-linecap: round;
 }
 
-@media (min-width: 720px) {
-  .dashboard-summary-card {
-    grid-template-columns: auto 1fr;
-    gap: 2rem;
-    padding-inline-end: 2rem;
-  }
-
-  .dashboard-summary-stats {
-    align-content: center;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem 1.5rem;
-  }
+.progress-bar-fill {
+  fill: var(--accent);
 }
 
 .stat-value {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 1.7rem;
-  font-weight: 800;
   color: var(--accent-strong);
 }
 
 .stat-label {
-  font-size: 0.85rem;
   color: var(--text-muted);
-  text-transform: uppercase;
   letter-spacing: 0.14em;
 }
 

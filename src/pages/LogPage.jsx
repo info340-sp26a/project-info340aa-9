@@ -9,6 +9,31 @@ import { ref, push, onValue } from "firebase/database";
 
 function LogPage() {
     const [logs, setLogs] = useState([]);
+
+    const foodLogs = logs.filter((log) => {
+      return log.type === "food";
+    });
+
+    const activityLogs = logs.filter((log) => {
+      return log.type === "activity";
+    });
+
+    const totalCaloriesConsumed = foodLogs.reduce(
+      (total, log) => {
+        return total + Number(log.calories);
+      },
+      0
+    );
+
+    const totalCaloriesBurned = activityLogs.reduce(
+      (total, log) => {
+        return total + Number(log.calories);
+      },
+      0
+    );
+
+const netCalories =
+  totalCaloriesConsumed - totalCaloriesBurned;
     useEffect(() => {
       const logsRef = ref(database, "logs");
       onValue(logsRef, (snapshot) => {
@@ -20,13 +45,12 @@ function LogPage() {
         }
       });
     }, []);
+
     function addLog(newLog) {
       const logsRef = ref(database, "logs");
       push(logsRef, newLog);
-      setLogs((currentLogs) => {
-        return [...currentLogs, newLog];
-      });
     }
+    
   return (
     <main>
 
@@ -44,6 +68,24 @@ function LogPage() {
         <ActivityForm addLog={addLog} />
       </div>
 
+      <section className="card">
+        <h2>Daily Summary</h2>
+
+        <p>
+          Calories Consumed:
+          {totalCaloriesConsumed}
+          </p>
+
+        <p>
+          Calories Burned:
+          {totalCaloriesBurned}
+        </p>
+
+        <p>
+          Net Calories:
+          {netCalories}
+        </p>
+      </section>
       <LogList logs={logs} />
 
     </main>

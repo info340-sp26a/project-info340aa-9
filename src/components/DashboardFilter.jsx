@@ -26,7 +26,11 @@ function DashboardFilter(props) {
 
 function DashboardForm(props) {
   return (
-    <Form onSubmit={(event) => event.preventDefault()}>
+    <Form
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+    >
       <Form.Group className="d-grid mb-3" controlId="date-range">
         <Form.Label className="text-color-main fs-6 fw-medium">
           View Period:
@@ -55,7 +59,9 @@ function DashboardForm(props) {
           value={props.selectedDate}
           min={props.dateMin}
           max={props.dateMax}
-          onChange={(event) => props.onDateChange(event.target.value)}
+          onChange={(event) => {
+            props.onDateChange(event.target.value);
+          }}
         />
       </Form.Group>
 
@@ -69,7 +75,9 @@ function DashboardForm(props) {
           type="text"
           name="q"
           value={props.metricQuery}
-          onChange={(event) => props.onMetricQueryChange(event.target.value)}
+          onChange={(event) => {
+            props.onMetricQueryChange(event.target.value);
+          }}
           placeholder="e.g., Protein, Cardio"
         />
       </Form.Group>
@@ -86,7 +94,11 @@ function DashboardFormDropdown(props) {
   };
 
   return (
-    <Dropdown onSelect={(eventKey) => props.onPeriodChange(eventKey)}>
+    <Dropdown
+      onSelect={(eventKey) => {
+        props.onPeriodChange(eventKey);
+      }}
+    >
       <Dropdown.Toggle
         id="dropdown-period"
         className="dashboard-form-control w-100 text-start background-color-surface-soft text-color-main"

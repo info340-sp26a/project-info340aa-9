@@ -17,8 +17,6 @@ function DashboardPlan({ netCalories }) {
     focus = "Maintenance";
     recommendation = "You are on track with your daily fitness goal.";
   }
-}
-
   return (
   <Card className="mb-4">
     <Card.Body>
@@ -32,5 +30,6 @@ function DashboardPlan({ netCalories }) {
     </Card.Body>
   </Card>
 );
+}
 
 export default DashboardPlan;

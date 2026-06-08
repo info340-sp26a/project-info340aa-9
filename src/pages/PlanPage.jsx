@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, set } from "firebase/database";
 import { database } from "../firebase";
 
 const workouts = [
@@ -187,6 +187,18 @@ export default function PlanPage() {
     });
   }, []);
 
+  useEffect(function() {
+  const goalRef = ref(database, "userSettings/selectedGoal");
+
+  onValue(goalRef, function(snapshot) {
+    const savedGoal = snapshot.val();
+
+    if (savedGoal) {
+      setSelectedGoal(savedGoal);
+    }
+  });
+}, []);
+
   function toggleComplete(title) {
     setCompletedWorkouts(function(prev) {
       return {
@@ -198,6 +210,8 @@ export default function PlanPage() {
 
   function handleGoalChange(goalKey) {
     setSelectedGoal(goalKey);
+    const goalRef = ref(database, "userSettings/selectedGoal");
+    set(goalRef, goalKey);
   }
 
   function getGoalButtonClassName(goalKey) {

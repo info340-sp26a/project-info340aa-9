@@ -15,6 +15,10 @@ function NutritionForm({ addLog }) {
       quantity,
       calories
     });
+
+    setFoodName("");
+    setQuantity("");
+    setCalories("");
   }
 
   return (

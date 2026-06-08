@@ -5,6 +5,19 @@ function ActivityForm({ addLog }) {
   const [duration, setDuration] = useState("");
   const [calories, setCalories] = useState("");
 
+
+  function handleActivityNameChange(event) {
+    setActivityName(event.target.value);
+  }
+
+  function handleDurationChange(event) {
+    setDuration(event.target.value);
+  }
+
+  function handleActivityCaloriesChange(event) {
+    setCalories(event.target.value);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -32,7 +45,7 @@ function ActivityForm({ addLog }) {
             id="activity-name"
             placeholder="e.g., Jogging"
             value={activityName}
-            onChange={(event) => setActivityName(event.target.value)}
+            onChange={handleActivityNameChange}
           />
         </div>
 
@@ -43,7 +56,7 @@ function ActivityForm({ addLog }) {
             id="activity-duration"
             placeholder="e.g., 30 minutes"
             value={duration}
-            onChange={(event) => setDuration(event.target.value)}
+            onChange={handleDurationChange}
           />
         </div>
 
@@ -54,7 +67,7 @@ function ActivityForm({ addLog }) {
             id="activity-calories"
             placeholder="e.g., 250"
             value={calories}
-            onChange={(event) => setCalories(event.target.value)}
+            onChange={handleActivityCaloriesChange}
           />
         </div>
 

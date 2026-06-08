@@ -6,6 +6,18 @@ function NutritionForm({ addLog }) {
   const [quantity, setQuantity] = useState("");
   const [calories, setCalories] = useState("");
 
+  function handleFoodNameChange(event) {
+    setFoodName(event.target.value);
+  }
+
+  function handleQuantityChange(event) {
+    setQuantity(event.target.value);
+  }
+
+  function handleCaloriesChange(event) {
+    setCalories(event.target.value);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -34,7 +46,7 @@ function NutritionForm({ addLog }) {
             id="food-name"
             placeholder="e.g., Chicken salad"
             value={foodName}
-            onChange={(event) => setFoodName(event.target.value)}
+            onChange={handleFoodNameChange}
           />
         </div>
 
@@ -46,7 +58,7 @@ function NutritionForm({ addLog }) {
             id="food-quantity"
             placeholder="e.g., 1 bowl"
             value={quantity}
-            onChange={(event) => setQuantity(event.target.value)}
+            onChange={handleQuantityChange}
           />
         </div>
 
@@ -58,7 +70,7 @@ function NutritionForm({ addLog }) {
             id="food-calories"
             placeholder="e.g., 450"
             value={calories}
-            onChange={(event) => setCalories(event.target.value)}
+            onChange={handleCaloriesChange}
           />
         </div>
         <button type="submit">Add Food</button>

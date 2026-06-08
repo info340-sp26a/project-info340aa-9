@@ -1,41 +1,34 @@
-import React from "react";
 import { NavLink } from "react-router";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
 
-function NavBar(props) {
+function NavBar() {
   return (
-    <header class="nav-header">
-      <div class="nav-header-container">
-        <div class="nav-logo">
-          <a href="../../index.html" class="nav-home-button">
-            FitHea
-          </a>
-        </div>
-        <nav aria-label="Main Navigation">
-          <ul>
-            <li>
-              <NavLink to="/dashboard" className="active nav-button">
-                Dashboard
-              </NavLink>
-            </li>
-            <li>
-              <a href="log.html" class="nav-button">
-                Activity Log
-              </a>
-            </li>
-            <li>
-              <a href="plan.html" class="nav-button">
-                Fitness Plan
-              </a>
-            </li>
-            <li>
-              <a href="community.html" class="nav-button">
-                Community
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <Navbar expand="lg" className="nav-header py-3">
+      <Container fluid className="px-4">
+        <Navbar.Brand as={NavLink} to="/" className="fs-4 fw-bold px-lg-4">
+          FitHea
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto gap-3 mx-4 pb-2 pb-lg-0">
+            <Nav.Link as={NavLink} to="/dashboard" className="nav-button">
+              Dashboard
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/log" className="nav-button">
+              Activity Log
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/plan" className="nav-button">
+              Fitness Plan
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/community" className="nav-button">
+              Community
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 

@@ -13,30 +13,30 @@ import NotFoundPage from './pages/NotFoundPage.jsx';
 import PostDetailPage from './pages/PostDetailPage.jsx';
 
 const initialChatData = [
-  { 
-    id: 1, 
-    sender: "Larissa", 
-    text: "Hello everyone! How is your week going?", 
-    type: "received" 
+  {
+    id: 1,
+    sender: "Larissa",
+    text: "Hello everyone! How is your week going?",
+    type: "received"
   },
-  { 
-    id: 2, 
-    sender: "You", 
-    text: "Hi Larissa! It's going well, just finished a great workout session. Check out this shot from my training! How about you?", 
+  {
+    id: 2,
+    sender: "You",
+    text: "Hi Larissa! It's going well, just finished a great workout session. Check out this shot from my training! How about you?",
     type: "sent",
     img: "/img/personal training.jpg",
     alt: "A photo from personal training session"
   },
-  { 
-    id: 3, 
-    sender: "Rain", 
-    text: "Hi everyone! I just started a new workout routine and it's going really well so far.", 
-    type: "received" 
+  {
+    id: 3,
+    sender: "Rain",
+    text: "Hi everyone! I just started a new workout routine and it's going really well so far.",
+    type: "received"
   },
-  { 
-    id: 4, 
-    sender: "Stella", 
-    text: "My lunch for today! What are you guys having?", 
+  {
+    id: 4,
+    sender: "Stella",
+    text: "My lunch for today! What are you guys having?",
     type: "received",
     img: "/img/diet.jpg",
     alt: "A photo of a healthy meal with vegetables."
@@ -45,18 +45,18 @@ const initialChatData = [
 
 export default function App() {
   const [messages, setMessages] = useState(initialChatData);
-  useEffect(function() {
+  useEffect(function () {
     const chatsRef = ref(database, "chats");
 
-    onValue(chatsRef, function(snapshot) {
+    onValue(chatsRef, function (snapshot) {
       const data = snapshot.val();
       if (data) {
-        const chatArray = Object.keys(data).map(function(key) {
+        const chatArray = Object.keys(data).map(function (key) {
           const singleChat = { ...data[key] };
           singleChat.id = key;
           return singleChat;
         });
-        
+
         setMessages(initialChatData.concat(chatArray));
       } else {
         setMessages(initialChatData);
@@ -64,17 +64,23 @@ export default function App() {
     });
   }, []);
 
+  const [error, setError] = useState(null);
+
   function handleSendMessageToDB(newMsgContent) {
     const chatsRef = ref(database, "chats");
-    const newChatRef = push(chatsRef); 
-    set(newChatRef, newMsgContent); 
+    const newChatRef = push(chatsRef);
+
+    set(newChatRef, newMsgContent)
+      .catch(function (err) {
+        setError(err.message);
+      });
   }
 
   const [selectedGoal, setSelectedGoal] = useState("muscleGain");
-  useEffect(function() {
+  useEffect(function () {
     const goalRef = ref(database, "userSettings/selectedGoal");
 
-    onValue(goalRef, function(snapshot) {
+    onValue(goalRef, function (snapshot) {
       const data = snapshot.val();
       if (data) {
         setSelectedGoal(data);
@@ -82,21 +88,21 @@ export default function App() {
     });
   }, []);
 
- function handleGoalChangeInDB(goalKey) {
+  function handleGoalChangeInDB(goalKey) {
     const goalRef = ref(database, "userSettings/selectedGoal");
     set(goalRef, goalKey);
   }
 
   const [logs, setLogs] = useState([]);
-  useEffect(function() {
+  useEffect(function () {
     const logsRef = ref(database, "logs");
- 
-    onValue(logsRef, function(snapshot) {
+
+    onValue(logsRef, function (snapshot) {
       const data = snapshot.val();
- 
+
       if (data) {
         const logKeys = Object.keys(data);
-        const logArray = logKeys.map(function(key) {
+        const logArray = logKeys.map(function (key) {
           const singleLogCopy = { ...data[key] };
           singleLogCopy.key = key;
           return singleLogCopy;
@@ -107,11 +113,17 @@ export default function App() {
       }
     });
   }, []);
- 
+
 
   return (
     <BrowserRouter>
       <div>
+        {
+          error &&
+          <p className="error-message">
+            {error}
+          </p>
+        }
         <NavBar />
         <Routes>
           <Route path="/" element={<Dashboard />} />
@@ -119,8 +131,8 @@ export default function App() {
           <Route path="/log" element={<LogPage />} />
           <Route path="/plan" element={<PlanPage selectedGoal={selectedGoal} setSelectedGoal={handleGoalChangeInDB} />} />
           <Route path="/nutrition" element={<NutritionForm />} />
-          <Route path="/community" element={<CommunityPage messages={messages} setMessages={handleSendMessageToDB} selectedGoal={selectedGoal} logs={logs}/>} /> 
-          <Route path="/community/:id" element={<PostDetailPage messages={messages} />} />  
+          <Route path="/community" element={<CommunityPage messages={messages} setMessages={handleSendMessageToDB} selectedGoal={selectedGoal} logs={logs} />} />
+          <Route path="/community/:id" element={<PostDetailPage messages={messages} />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

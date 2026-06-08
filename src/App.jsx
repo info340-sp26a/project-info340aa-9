@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { database } from "./firebase";
+import { ref, onValue } from "firebase/database";
+
 import NavBar from "./components/NavBar.jsx";
 import PlanPage from "./pages/PlanPage.jsx";
 import NutritionForm from "./components/NutritionForm.jsx";
@@ -35,6 +38,30 @@ const initialChatData = [
 export default function App() {
   const [messages, setMessages] = useState(initialChatData);
 
+  const [selectedGoal, setSelectedGoal] = useState("muscleGain");
+  const [logs, setLogs] = useState([]);
+ 
+  useEffect(function() {
+    const logsRef = ref(database, "logs");
+ 
+    onValue(logsRef, function(snapshot) {
+      const data = snapshot.val();
+ 
+      if (data) {
+        const logKeys = Object.keys(data);
+        const logArray = logKeys.map(function(key) {
+          const singleLogCopy = { ...data[key] };
+          singleLogCopy.key = key;
+          return singleLogCopy;
+        });
+        setLogs(logArray);
+      } else {
+        setLogs([]);
+      }
+    });
+  }, []);
+ 
+
   return (
     <BrowserRouter>
       <div>
@@ -43,9 +70,9 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/log" element={<LogPage />} />
-          <Route path="/plan" element={<PlanPage />} />
+          <Route path="/plan" element={<PlanPage selectedGoal={selectedGoal} setSelectedGoal={setSelectedGoal} />} />
           <Route path="/nutrition" element={<NutritionForm />} />
-          <Route path="/community" element={<CommunityPage messages={messages} setMessages={setMessages} />} />
+          <Route path="/community" element={<CommunityPage messages={messages} setMessages={setMessages} selectedGoal={selectedGoal} logs={logs}/>} />
           <Route path="/community/:id" element={<PostDetailPage messages={messages} />} />  
 
           <Route path="*" element={<NotFoundPage />} />

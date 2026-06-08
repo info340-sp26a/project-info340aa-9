@@ -6,6 +6,7 @@ import CommunityPage from "./pages/CommunityPage.jsx";
 import LogPage from "./pages/LogPage.jsx";
 import Dashboard from "./pages/DashboardPage.jsx";
 import NotFoundPage from './pages/NotFoundPage.jsx';
+import PostDetailPage from './pages/PostDetailPage.jsx';
 
 export default function App() {
   return (
@@ -19,6 +20,9 @@ export default function App() {
           <Route path="/plan" element={<PlanPage />} />
           <Route path="/nutrition" element={<NutritionForm />} />
           <Route path="/community" element={<CommunityPage />} />
+
+          <Route path="/community/:id" element={<PostDetailPage />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 

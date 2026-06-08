@@ -5,7 +5,12 @@ import ActivityForm from "../components/ActivityForm";
 import LogList from "../components/LogList";
 
 import { database } from "../firebase";
-import { ref, push, onValue } from "firebase/database";
+import {
+  ref,
+  push,
+  onValue,
+  remove
+} from "firebase/database";
 
 function LogPage() {
     const [logs, setLogs] = useState([]);
@@ -34,21 +39,41 @@ function LogPage() {
 
 const netCalories =
   totalCaloriesConsumed - totalCaloriesBurned;
-    useEffect(() => {
-      const logsRef = ref(database, "logs");
-      onValue(logsRef, (snapshot) => {
-        const data = snapshot.val();
+useEffect(() => {
+  const logsRef = ref(database, "logs");
 
-        if (data) {
-          const logArray = Object.values(data);
-          setLogs(logArray);
-        }
+  onValue(logsRef, (snapshot) => {
+    const data = snapshot.val();
+
+    if (data) {
+      const logKeys = Object.keys(data);
+
+      const logArray = logKeys.map((key) => {
+        const singleLogCopy = {
+          ...data[key]
+        };
+
+        singleLogCopy.key = key;
+
+        return singleLogCopy;
       });
-    }, []);
+
+      setLogs(logArray);
+    }
+  });
+}, []);
 
     function addLog(newLog) {
       const logsRef = ref(database, "logs");
       push(logsRef, newLog);
+    }
+
+    function deleteLog(logKey) {
+      const logRef = ref(
+        database,
+        "logs/" + logKey
+      );
+      remove(logRef);
     }
     
   return (
@@ -86,7 +111,10 @@ const netCalories =
           {netCalories}
         </p>
       </section>
-      <LogList logs={logs} />
+      <LogList
+        logs={logs}
+        onDeleteLog={deleteLog}
+      />
 
     </main>
   );

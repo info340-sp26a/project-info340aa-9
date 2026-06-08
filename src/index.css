@@ -15,11 +15,20 @@
   --border: rgba(20, 20, 20, 0.08);
   --accent: #1d4737;
   --accent-soft: rgba(29, 71, 55, 0.12);
+  --accent-softer: rgba(17, 24, 39, 0.04);
   --accent-strong: #142f27;
   --accent-rose: #9f4f6c;
   --accent-rose-soft: rgba(181, 111, 138, 0.12);
   --radius: 28px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-color-main {
+  color: var(--text-main) !important;
+}
+
+.background-color-surface-soft {
+  background: var(--surface-soft) !important;
 }
 
 html,
@@ -215,17 +224,6 @@ button:hover {
   }
 }
 
-.form-group {
-  display: grid;
-  gap: 0.7rem;
-  margin-bottom: 1rem;
-}
-
-.form-group label {
-  color: var(--text-main);
-  font-size: 0.95rem;
-  font-weight: 500;
-}
 
 .card {
   background: var(--surface);
@@ -394,6 +392,21 @@ button:hover {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
+}
+
+.dashboard-form-control {
+  border-color: var(--border) !important;
+  box-shadow: none !important;
+}
+
+.dashboard-form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dashboard-plan-link {
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
 }
 
 .dashboard-grid {

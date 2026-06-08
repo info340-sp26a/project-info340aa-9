@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import { useState, useEffect } from "react";
 import { database } from "./firebase";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, set } from "firebase/database";
 
 import NavBar from "./components/NavBar.jsx";
 import PlanPage from "./pages/PlanPage.jsx";
@@ -39,8 +39,23 @@ export default function App() {
   const [messages, setMessages] = useState(initialChatData);
 
   const [selectedGoal, setSelectedGoal] = useState("muscleGain");
+  useEffect(function() {
+    const goalRef = ref(database, "userSettings/selectedGoal");
+
+    onValue(goalRef, function(snapshot) {
+      const data = snapshot.val();
+      if (data) {
+        setSelectedGoal(data);
+      }
+    });
+  }, []);
+
+ function handleGoalChangeInDB(goalKey) {
+    const goalRef = ref(database, "userSettings/selectedGoal");
+    set(goalRef, goalKey);
+  }
+
   const [logs, setLogs] = useState([]);
- 
   useEffect(function() {
     const logsRef = ref(database, "logs");
  
@@ -70,7 +85,7 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/log" element={<LogPage />} />
-          <Route path="/plan" element={<PlanPage selectedGoal={selectedGoal} setSelectedGoal={setSelectedGoal} />} />
+          <Route path="/plan" element={<PlanPage selectedGoal={selectedGoal} setSelectedGoal={handleGoalChangeInDB} />} />
           <Route path="/nutrition" element={<NutritionForm />} />
           <Route path="/community" element={<CommunityPage messages={messages} setMessages={setMessages} selectedGoal={selectedGoal} logs={logs}/>} />
           <Route path="/community/:id" element={<PostDetailPage messages={messages} />} />  

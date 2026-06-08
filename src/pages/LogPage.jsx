@@ -4,10 +4,17 @@ import NutritionForm from "../components/NutritionForm";
 import ActivityForm from "../components/ActivityForm";
 import LogList from "../components/LogList";
 
+import { database } from "../firebase";
+import { ref, push } from "firebase/database";
+
 function LogPage() {
     const [logs, setLogs] = useState([]);
     function addLog(newLog) {
-        setLogs([...logs, newLog]);
+      const logsRef = ref(database, "logs");
+      push(logsRef, newLog);
+      setLogs((currentLogs) => {
+        return [...currentLogs, newLog];
+      });
     }
   return (
     <main>

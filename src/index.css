@@ -394,14 +394,19 @@ button:hover {
   grid-template-columns: 1fr;
 }
 
-.btn, .form-control, .dashboard-focus-control {
+.dashboard-form-control {
   border-color: var(--border) !important;
   box-shadow: none !important;
 }
 
-.btn:focus, .form-control:focus, .dashboard-form-control:focus {
+.dashboard-form-control:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.dashboard-plan-link {
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
 }
 
 .dashboard-grid {

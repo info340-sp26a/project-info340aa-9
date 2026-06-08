@@ -32,6 +32,14 @@ const initialChatData = [
     sender: "Rain", 
     text: "Hi everyone! I just started a new workout routine and it's going really well so far.", 
     type: "received" 
+  },
+  { 
+    id: 4, 
+    sender: "Stella", 
+    text: "My lunch for today! What are you guys having?", 
+    type: "received",
+    img: "/img/diet.jpg",
+    alt: "A photo of a healthy meal with vegetables."
   }
 ];
 
@@ -111,7 +119,7 @@ export default function App() {
           <Route path="/log" element={<LogPage />} />
           <Route path="/plan" element={<PlanPage selectedGoal={selectedGoal} setSelectedGoal={handleGoalChangeInDB} />} />
           <Route path="/nutrition" element={<NutritionForm />} />
-          <Route path="/community" element={<CommunityPage messages={messages} setMessages={handleSendMessageToDB} selectedGoal={selectedGoal} logs={logs}/>} />
+          <Route path="/community" element={<CommunityPage messages={messages} setMessages={handleSendMessageToDB} selectedGoal={selectedGoal} logs={logs}/>} /> 
           <Route path="/community/:id" element={<PostDetailPage messages={messages} />} />  
 
           <Route path="*" element={<NotFoundPage />} />

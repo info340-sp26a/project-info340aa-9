@@ -227,6 +227,40 @@ export default function PlanPage() {
   }, 0);
 
   const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
+  let nutritionTip = "";
+  let recoveryTip = "";
+  let progressTip = "";
+
+  if (netCalories > 2000) {
+    nutritionTip =
+    "Consider adding more activity today to balance your calorie intake.";
+
+    recoveryTip =
+    "Include light movement to help maintain energy balance.";
+
+    progressTip =
+    "Track calorie intake carefully and monitor portion sizes.";
+  }
+  else if (netCalories < 1200) {
+    nutritionTip =
+    "Consider adding a balanced meal or healthy snack today.";
+
+    recoveryTip =
+    "Make sure you are eating enough to support recovery.";
+
+    progressTip =
+    "Focus on meeting your nutrition goals consistently.";
+  }
+  else {
+    nutritionTip =
+    "You are on track with your daily calorie goal.";
+
+    recoveryTip =
+    "Maintain your current balance of activity and recovery.";
+
+    progressTip =
+    "Keep following your routine and monitor your progress.";
+  }
 
   const workoutCards = currentPlan.workouts.map(function(workout) {
     const isCompleted = !!completedWorkouts[workout.title];
@@ -373,17 +407,17 @@ export default function PlanPage() {
         <div className="recommendation-grid">
           <article className="recommendation-item">
             <h3>Nutrition Support</h3>
-            <p>{currentPlan.nutritionTip}</p>
+            <p>{nutritionTip}</p>
           </article>
 
           <article className="recommendation-item">
             <h3>Recovery Reminder</h3>
-            <p>{currentPlan.recoveryTip}</p>
+            <p>{recoveryTip}</p>
           </article>
 
           <article className="recommendation-item">
             <h3>Progress Tip</h3>
-            <p>{currentPlan.progressTip}</p>
+            <p>{progressTip}</p>
           </article>
         </div>
       </section>

@@ -4,7 +4,6 @@ import DashboardWelcome from "../components/DashboardWelcome";
 import DashboardSummary from "../components/DashboardSummary";
 import DashboardPlan from "../components/DashboardPlan";
 
-import { useEffect } from "react";
 import { database } from "../firebase";
 import { ref, onValue } from "firebase/database";
 
@@ -73,6 +72,44 @@ function DashboardPage() {
   };
   const [period, setPeriod] = useState("week");
   const [logs, setLogs] = useState([]);
+
+  useEffect(() => {
+    const logsRef = ref(database, "logs");
+
+  onValue(logsRef, (snapshot) => {
+    const data = snapshot.val();
+
+    if (data) {
+      const logArray = Object.values(data);
+      setLogs(logArray);
+    }
+  });
+}, []);
+
+const foodLogs = logs.filter((log) => {
+  return log.type === "food";
+});
+
+const activityLogs = logs.filter((log) => {
+  return log.type === "activity";
+});
+
+const totalCaloriesConsumed = foodLogs.reduce(
+  (total, log) => {
+    return total + Number(log.calories);
+  },
+  0
+);
+
+const totalCaloriesBurned = activityLogs.reduce(
+  (total, log) => {
+    return total + Number(log.calories);
+  },
+  0
+);
+
+const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
+
   const [metricQuery, setMetricQuery] = useState("");
   const calorieHistory = useMemo(
     () => generateCalorieHistory(120, userProfile.calorieTarget),
@@ -145,7 +182,7 @@ function DashboardPage() {
           onMetricQueryChange={setMetricQuery}
         />
         <DashboardSummary user={user} metricQuery={metricQuery} summaryTitle={summaryTitle} />
-        <DashboardPlan />
+        <DashboardPlan netCalories={netCalories} />
       </main>
     </div>
   );

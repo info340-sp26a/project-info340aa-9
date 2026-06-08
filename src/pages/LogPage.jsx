@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import NutritionForm from "../components/NutritionForm";
 import ActivityForm from "../components/ActivityForm";
 import LogList from "../components/LogList";
 
 import { database } from "../firebase";
-import { ref, push } from "firebase/database";
+import { ref, push, onValue } from "firebase/database";
 
 function LogPage() {
     const [logs, setLogs] = useState([]);
+    useEffect(() => {
+      const logsRef = ref(database, "logs");
+      onValue(logsRef, (snapshot) => {
+        const data = snapshot.val();
+
+        if (data) {
+          const logArray = Object.values(data);
+          setLogs(logArray);
+        }
+      });
+    }, []);
     function addLog(newLog) {
       const logsRef = ref(database, "logs");
       push(logsRef, newLog);

@@ -1434,3 +1434,29 @@ body.landing-page {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.logger-layout form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.logger-layout .form-group {
+  margin-bottom: 0;
+}
+
+.logger-layout .form-group label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 600;
+}
+
+.logger-layout input {
+  min-height: 3.5rem;
+}
+
+.logger-layout button {
+  width: fit-content;
+  min-width: 8.5rem;
+  padding: 0.75rem 1.25rem;
+  margin-top: 0.5rem;
+}

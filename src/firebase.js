@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
+  databaseURL:
+    "https://spr-26-info-340-project-aa-9-default-rtdb.firebaseio.com/",
   apiKey: "AIzaSyCAmLYoqUuG0SjqhiCf_dkDCWrTJ2BfjUY",
   authDomain: "spr-26-info-340-project-aa-9.firebaseapp.com",
   projectId: "spr-26-info-340-project-aa-9",

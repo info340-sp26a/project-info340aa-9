@@ -15,7 +15,7 @@ export default function CommunityPage({ messages, setMessages, selectedGoal, log
   function handleSendMessage(event) {
     event.preventDefault();
     
-    if (chatInput !== "") {
+    if (chatInput.trim() !== "") {
       const newMsg = {
         id: messages.length + 1,
         sender: "You",

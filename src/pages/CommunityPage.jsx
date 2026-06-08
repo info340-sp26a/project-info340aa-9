@@ -1,31 +1,7 @@
 import React, { useState } from 'react';
 import ChatSection from '../components/ChatSection';
 
-const initialChatData = [
-  { 
-    id: 1, 
-    sender: "Larissa", 
-    text: "Hello everyone! How is your week going?", 
-    type: "received" 
-  },
-  { 
-    id: 2, 
-    sender: "You", 
-    text: "Hi Larissa! It's going well, just finished a great workout session. Check out this shot from my training! How about you?", 
-    type: "sent",
-    img: "/img/personal training.jpg",
-    alt: "A photo from personal training session"
-  },
-  { 
-    id: 3, 
-    sender: "Rain", 
-    text: "Hi everyone! I just started a new workout routine and it's going really well so far.", 
-    type: "received" 
-  }
-];
-
-export default function CommunityPage() {
-  const [messages, setMessages] = useState(initialChatData);
+export default function CommunityPage({ messages, setMessages }) {
   const [chatInput, setChatInput] = useState("");
 
   function handleSendMessage(event) {

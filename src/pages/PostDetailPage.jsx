@@ -1,14 +1,38 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
  
-export default function PostDetailPage() {
+export default function PostDetailPage({ messages }) {
   const { id } = useParams();
+  const post = messages.find(function(msg) {
+    return msg.id === Number(id);
+  });
+ 
+  if (!post) {
+    return (
+      <main>
+        <section className="page-intro">
+          <h1>Post not found</h1>
+          <Link to="/community">← Back to Community</Link>
+        </section>
+      </main>
+    );
+  }
  
   return (
     <main>
       <section className="page-intro">
-        <h1>Post #{id}</h1>
-        <p>Post detail content will go here.</p>
+        <h1>Post by {post.sender}</h1>
+ 
+        {post.img ? (
+          <img
+            src={post.img}
+            alt={post.alt}
+            className="chat-inline-image"
+          />
+        ) : null}
+ 
+        <p>{post.text}</p>
+ 
         <Link to="/community">← Back to Community</Link>
       </section>
     </main>

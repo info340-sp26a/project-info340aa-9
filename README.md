@@ -1,16 +1,89 @@
-# React + Vite
+FitHea
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FitHea is a fitness and wellness web application that helps users track nutrition and exercise activities, monitor daily calorie balance, and receive goal-based fitness recommendations. The platform combines activity logging, personalized planning, and community interaction into a single experience.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Features
+Feature 0.5: Goal-Based Calorie Summary & Recommendation
 
-## React Compiler
+Users can track their daily calorie intake and activity records. The system automatically calculates:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Total calories consumed
+Total calories burned
+Net calories
 
-## Expanding the ESLint configuration
+Based on the calculated calorie balance, FitHea generates a recommendation preview to help users understand their daily progress and maintain healthier habits.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+Feature 1: Integrated Nutrition and Activity Log
+
+Users can record both nutrition and activity information in one place.
+
+Nutrition Logging
+
+Users can add:
+
+Food name
+Quantity
+Estimated calories
+Activity Logging
+
+Users can add:
+
+Activity name
+Duration
+Estimated calories burned
+Log Management
+
+Users can:
+
+Add new food records
+Add new activity records
+View all saved records
+Delete existing records
+
+All records are stored in Firebase Realtime Database and update automatically when changes occur.
+
+
+Feature 2: Community Support
+
+FitHea includes a community section where users can:
+
+Browse community posts
+Navigate to post detail pages
+Explore fitness-related discussions
+
+This feature helps create a supportive environment for users interested in health and fitness topics.
+Application Pages
+Dashboard
+
+Displays:
+
+Daily calorie information
+Summary statistics
+Recommendation preview
+Activity Log
+
+Allows users to:
+
+Add nutrition records
+Add activity records
+Delete records
+View calorie summaries
+Fitness Plan
+
+Displays recommendation information based on calorie balance.
+
+Community
+
+Allows users to browse fitness-related community content.
+
+
+Team
+
+FitHea Development Team
+
+Stella Sun
+Larissa Wang
+Rain Hou
+Riwoo Kim

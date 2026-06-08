@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router';
  
 export default function PostDetailPage({ messages }) {
   const { id } = useParams();

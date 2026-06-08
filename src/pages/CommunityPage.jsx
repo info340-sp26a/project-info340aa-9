@@ -81,7 +81,7 @@ export default function CommunityPage({ messages, setMessages, selectedGoal, log
       };
       
       // setMessages([...messages, sharedMsg]);
-      onSendMessage(sharedMsg);
+      setMessages(sharedMsg);
     }
   }
 

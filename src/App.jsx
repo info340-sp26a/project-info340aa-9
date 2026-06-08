@@ -38,28 +38,29 @@ const initialChatData = [
 export default function App() {
   const [messages, setMessages] = useState(initialChatData);
   useEffect(function() {
-  const chatsRef = ref(database, "chats");
+    const chatsRef = ref(database, "chats");
 
-  onValue(chatsRef, function(snapshot) {
-    const data = snapshot.val();
-    if (data) {
-      const chatArray = Object.keys(data).map(function(key) {
-        const singleChat = { ...data[key] };
-        singleChat.id = key;
-        return singleChat;
-      });
-      setMessages(chatArray);
-    } else {
-      setMessages(initialChatData);
-    }
-  });
-}, []);
+    onValue(chatsRef, function(snapshot) {
+      const data = snapshot.val();
+      if (data) {
+        const chatArray = Object.keys(data).map(function(key) {
+          const singleChat = { ...data[key] };
+          singleChat.id = key;
+          return singleChat;
+        });
+        
+        setMessages(initialChatData.concat(chatArray));
+      } else {
+        setMessages(initialChatData);
+      }
+    });
+  }, []);
 
-function handleSendMessageToDB(newMsgContent) {
-  const chatsRef = ref(database, "chats");
-  const newChatRef = push(chatsRef); 
-  set(newChatRef, newMsgContent); 
-}
+  function handleSendMessageToDB(newMsgContent) {
+    const chatsRef = ref(database, "chats");
+    const newChatRef = push(chatsRef); 
+    set(newChatRef, newMsgContent); 
+  }
 
   const [selectedGoal, setSelectedGoal] = useState("muscleGain");
   useEffect(function() {

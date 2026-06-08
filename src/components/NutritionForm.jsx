@@ -73,7 +73,9 @@ function NutritionForm({ addLog }) {
             onChange={handleCaloriesChange}
           />
         </div>
+      <div className="submit-button">
         <button type="submit">Add Food</button>
+      </div>
       </form>
     </section>
   );

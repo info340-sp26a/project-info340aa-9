@@ -31,12 +31,39 @@
   color: var(--accent) !important;
 }
 
+.text-color-rose {
+  color: var(--accent-rose) !important;
+}
+
 .text-color-muted {
   color: var(--text-muted) !important
 }
-
 .background-color-surface-soft {
-  background: var(--surface-soft) !important;
+  background-color: var(--surface-soft) !important;
+}
+
+.background-color-accent-soft {
+  background-color: var(--accent-soft) !important;
+}
+
+.background-color-accent-softer {
+  background-color: var(--accent-softer) !important;
+}
+
+.background-color-rose-soft {
+  background-color: var(--accent-rose-soft) !important;
+}
+
+.border-color-accent-rose-soft {
+  border: 1px solid var(--accent-rose-soft) !important;
+}
+
+.border-color-accent-softer {
+  border: 1px solid var(--accent-softer) !important;
+}
+
+.border-color-accent-softer {
+  border: 1px solid var(--accent-softer) !important;
 }
 
 html,
@@ -454,6 +481,17 @@ button:hover {
   color: var(--text-muted);
   letter-spacing: 0.14em;
 }
+
+.dashboard-accent-card-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+}
+
+.dashboard-badge {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
 
 .mini-metrics {
   display: grid;

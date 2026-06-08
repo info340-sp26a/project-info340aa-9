@@ -105,6 +105,24 @@ function DashboardSummary(props) {
     ? statItems.filter((item) => item.label.toLowerCase().includes(metricQuery))
     : statItems;
 
+  const statContent =
+    visibleStatItems.length > 0 ? (
+      visibleStatItems.map((item) => (
+        <Col key={item.label} className="stat-item">
+          <Card.Text className="mb-0">
+            <span className="text-color-muted d-block text-uppercase small">
+              {item.label}
+            </span>
+            <strong className="text-color-accent d-block mt-1 fs-3 fw-bold">
+              {item.value}
+            </strong>
+          </Card.Text>
+        </Col>
+      ))
+    ) : (
+      <p className="text-color-muted m-0">No matching calorie metric found.</p>
+    );
+
   return (
     <Card className="mb-4 pe-md-4">
       <Card.Body>
@@ -121,24 +139,7 @@ function DashboardSummary(props) {
           </Col>
           <Col xs={12} md>
             <Row xs={1} md={2} className="g-3 g-md-4 align-content-center">
-              {visibleStatItems.length > 0 ? (
-                visibleStatItems.map((item) => (
-                  <Col key={item.label} className="stat-item">
-                    <Card.Text className="mb-0">
-                      <span className="text-color-muted d-block text-uppercase small">
-                        {item.label}
-                      </span>
-                      <strong className="text-color-accent d-block mt-1 fs-3 fw-bold">
-                        {item.value}
-                      </strong>
-                    </Card.Text>
-                  </Col>
-                ))
-              ) : (
-                <p className="text-color-muted m-0">
-                  No matching calorie metric found.
-                </p>
-              )}
+              {statContent}
             </Row>
           </Col>
         </Row>

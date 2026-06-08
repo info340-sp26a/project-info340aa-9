@@ -1,10 +1,16 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 export default function ChatSection({ messages, chatInput, setChatInput, handleSendMessage, handleShareButtonClick }) {
 
   const messageList = messages.map(function(msg) {
     return (
-      <div key={msg.id} className={"chat-" + msg.type}>
+      <Link 
+      key={msg.id}
+      to={"/community/" + msg.id}>
+      
+      <div className={"chat-" + msg.type}>
         <span className="sender">{msg.sender}</span>
 
         {msg.img ? (
@@ -16,7 +22,8 @@ export default function ChatSection({ messages, chatInput, setChatInput, handleS
         ) : null}
 
         <p>{msg.text}</p>
-      </div>
+        </div>
+      </Link>
     );
   });
 
@@ -37,21 +44,21 @@ export default function ChatSection({ messages, chatInput, setChatInput, handleS
           <button
             type="button"
             className="mini-share-btn"
-            onClick={function() { handleShareButtonClick("Today's Nutrition"); }}
+            onClick={() => { handleShareButtonClick("Today's Nutrition"); }}
           >
             🥗 Today's Nutrition
           </button>
           <button
             type="button"
             className="mini-share-btn"
-            onClick={function() { handleShareButtonClick("Workout log"); }}
+            onClick={() => { handleShareButtonClick("Workout log"); }}
           >
             🏋️ Workout log
           </button>
           <button
             type="button"
             className="mini-share-btn"
-            onClick={function() { handleShareButtonClick("Weekly Progress"); }}
+            onClick={() => { handleShareButtonClick("Weekly Progress"); }}
           >
             📊 Weekly Progress
           </button>
@@ -65,7 +72,7 @@ export default function ChatSection({ messages, chatInput, setChatInput, handleS
           id="chat-box"
           placeholder="Write a message..."
           value={chatInput}
-          onChange={function(e) { setChatInput(e.target.value); }}
+          onChange={(e) => { setChatInput(e.target.value); }}
         />
         <button type="submit">Send</button>
       </form>

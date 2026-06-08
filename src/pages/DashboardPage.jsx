@@ -4,6 +4,10 @@ import DashboardWelcome from "../components/DashboardWelcome";
 import DashboardSummary from "../components/DashboardSummary";
 import DashboardPlan from "../components/DashboardPlan";
 
+import { useEffect } from "react";
+import { database } from "../firebase";
+import { ref, onValue } from "firebase/database";
+
 function toDateKey(date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -68,6 +72,7 @@ function DashboardPage() {
     calorieTarget: 2500,
   };
   const [period, setPeriod] = useState("week");
+  const [logs, setLogs] = useState([]);
   const [metricQuery, setMetricQuery] = useState("");
   const calorieHistory = useMemo(
     () => generateCalorieHistory(120, userProfile.calorieTarget),

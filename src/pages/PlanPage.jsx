@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+import { database } from "../firebase";
 
 const workouts = [
   {
@@ -166,8 +168,24 @@ function WorkoutCard(props) {
 export default function PlanPage() {
   const [completedWorkouts, setCompletedWorkouts] = useState({});
   const [selectedGoal, setSelectedGoal] = useState("muscleGain");
+  const [logs, setLogs] = useState([]);
 
   const currentPlan = planOptions[selectedGoal];
+
+  useEffect(function() {
+    const logsRef = ref(database, "logs");
+
+    onValue(logsRef, function(snapshot) {
+      const data = snapshot.val();
+
+      if (data) {
+        const logArray = Object.values(data);
+        setLogs(logArray);
+      } else {
+        setLogs([]);
+      }
+    });
+  }, []);
 
   function toggleComplete(title) {
     setCompletedWorkouts(function(prev) {
@@ -191,6 +209,24 @@ export default function PlanPage() {
 
     return buttonClassName;
   }
+
+  const foodLogs = logs.filter(function(log) {
+    return log.type === "food";
+  });
+
+  const activityLogs = logs.filter(function(log) {
+    return log.type === "activity";
+  });
+
+  const totalCaloriesConsumed = foodLogs.reduce(function(total, log) {
+    return total + Number(log.calories);
+  }, 0);
+
+  const totalCaloriesBurned = activityLogs.reduce(function(total, log) {
+    return total + Number(log.calories);
+  }, 0);
+
+  const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
 
   const workoutCards = currentPlan.workouts.map(function(workout) {
     const isCompleted = !!completedWorkouts[workout.title];
@@ -300,6 +336,31 @@ export default function PlanPage() {
 
         <div className="plan-card-grid">
           {workoutCards}
+        </div>
+      </section>
+
+      <section className="card log-insight-panel">
+        <h2>Logged Data Insight</h2>
+        <p>
+          These totals come from the nutrition and activity records saved in
+          your activity log.
+        </p>
+
+        <div className="log-insight-grid">
+          <div className="log-insight-item">
+            <span>Food calories logged</span>
+            <strong>{totalCaloriesConsumed} kcal</strong>
+          </div>
+
+          <div className="log-insight-item">
+            <span>Activity calories logged</span>
+            <strong>{totalCaloriesBurned} kcal</strong>
+          </div>
+
+          <div className="log-insight-item">
+            <span>Net calories</span>
+            <strong>{netCalories} kcal</strong>
+          </div>
         </div>
       </section>
 

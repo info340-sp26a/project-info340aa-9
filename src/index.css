@@ -1395,3 +1395,42 @@ body.landing-page {
 .selected-goal-button::after {
   content: " ✓";
 }
+
+.log-insight-panel > p {
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.log-insight-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.log-insight-item {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(17, 24, 39, 0.04);
+  border: 1px solid var(--border);
+}
+
+.log-insight-item span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.log-insight-item strong {
+  color: var(--accent-strong);
+  font-size: 1.4rem;
+}
+
+@media (min-width: 768px) {
+  .log-insight-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

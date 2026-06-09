@@ -48,7 +48,7 @@ function DashboardWelcome(props) {
             pill
             className="dashboard-badge border-color-accent-softer py-3 px-4 me-3 background-color-accent-softer text-color-main text-uppercase"
           >
-            5-day streak
+            {props.streak}-day streak
           </Badge>
         </div>
         <h1 className="text-color-main">Welcome back, {props.user.name}!</h1>

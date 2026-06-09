@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DashboardFilter from "../components/DashboardFilter";
 import DashboardWelcome from "../components/DashboardWelcome";
 import DashboardSummary from "../components/DashboardSummary";
@@ -51,8 +51,8 @@ function DashboardPage() {
   const [period, setPeriod] = useState("week");
   const [logs, setLogs] = useState([]);
   const [metricQuery, setMetricQuery] = useState("");
-
   const [calorieHistory, setCalorieHistory] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
 
   useEffect(() => {
     const logsRef = ref(database, "logs");
@@ -83,6 +83,54 @@ function DashboardPage() {
     });
   }, []);
 
+  let streak = 0;
+  if (calorieHistory.length > 0) {
+    const sortedHistory = [...calorieHistory].sort(
+      (a, b) => parseDateKey(b.date) - parseDateKey(a.date),
+    );
+    for (const entry of sortedHistory) {
+      if (entry.calorieInfo.intake >= entry.calorieInfo.target) {
+        streak++;
+      } else {
+        break;
+      }
+    }
+  }
+
+  let filteredHistory = [];
+  let dateMin = "";
+  let dateMax = "";
+
+  if (calorieHistory.length > 0) {
+    const daysByPeriod = { today: 1, week: 7, month: 30, year: 365 };
+    const daysToInclude = daysByPeriod[period] ?? 7;
+
+    const latestDate = parseDateKey(
+      calorieHistory[calorieHistory.length - 1].date,
+    );
+    const cutoff = new Date(latestDate);
+    cutoff.setDate(latestDate.getDate() - (daysToInclude - 1));
+
+    filteredHistory = calorieHistory.filter(
+      (entry) => parseDateKey(entry.date) >= cutoff,
+    );
+
+    if (filteredHistory.length > 0) {
+      dateMin = filteredHistory[0].date;
+      dateMax = filteredHistory[filteredHistory.length - 1].date;
+    }
+  }
+
+  let activeSelectedDate = "";
+  const isValidDate = filteredHistory.some(
+    (entry) => entry.date === selectedDate,
+  );
+  if (isValidDate) {
+    activeSelectedDate = selectedDate;
+  } else if (filteredHistory.length > 0) {
+    activeSelectedDate = filteredHistory[filteredHistory.length - 1].date;
+  }
+
   const foodLogs = logs.filter((log) => log.type === "food");
   const activityLogs = logs.filter((log) => log.type === "activity");
 
@@ -96,38 +144,6 @@ function DashboardPage() {
 
   const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
 
-  const filteredHistory = useMemo(() => {
-    if (calorieHistory.length === 0) {
-      return [];
-    }
-
-    const daysByPeriod = {
-      today: 1,
-      week: 7,
-      month: 30,
-      year: 365,
-    };
-    const daysToInclude = daysByPeriod[period] ?? 7;
-    const latestDate = parseDateKey(
-      calorieHistory[calorieHistory.length - 1].date,
-    );
-    const cutoff = new Date(latestDate);
-    cutoff.setDate(latestDate.getDate() - (daysToInclude - 1));
-
-    return calorieHistory.filter((entry) => parseDateKey(entry.date) >= cutoff);
-  }, [calorieHistory, period]);
-
-  const availableDates = useMemo(
-    () => new Set(filteredHistory.map((entry) => entry.date)),
-    [filteredHistory],
-  );
-  const dateMin = filteredHistory[0]?.date ?? "";
-  const dateMax = filteredHistory[filteredHistory.length - 1]?.date ?? "";
-
-  const [selectedDate, setSelectedDate] = useState("");
-  const activeSelectedDate = availableDates.has(selectedDate)
-    ? selectedDate
-    : dateMax;
   const todayKey = toDateKey(new Date());
 
   const summaryTitle = activeSelectedDate
@@ -154,10 +170,13 @@ function DashboardPage() {
   return (
     <div className="main-dashboard">
       <main>
-        <DashboardWelcome user={user} />
+        <DashboardWelcome user={user} streak={streak} />
         <DashboardFilter
           period={period}
-          onPeriodChange={setPeriod}
+          onPeriodChange={(newPeriod) => {
+            setPeriod(newPeriod);
+            setSelectedDate("");
+          }}
           selectedDate={activeSelectedDate}
           onDateChange={setSelectedDate}
           dateMin={dateMin}

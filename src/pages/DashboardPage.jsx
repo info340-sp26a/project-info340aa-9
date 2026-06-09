@@ -88,11 +88,40 @@ function DashboardPage() {
     const sortedHistory = [...calorieHistory].sort(
       (a, b) => parseDateKey(b.date) - parseDateKey(a.date),
     );
-    for (const entry of sortedHistory) {
-      if (entry.calorieInfo.intake >= entry.calorieInfo.target) {
-        streak++;
-      } else {
-        break;
+
+    const today = new Date();
+    const todayKeyStr = toDateKey(today);
+
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayKeyStr = toDateKey(yesterday);
+
+    let startIndex = sortedHistory.findIndex(
+      (entry) => entry.date === todayKeyStr,
+    );
+    if (startIndex === -1) {
+      startIndex = sortedHistory.findIndex(
+        (entry) => entry.date === yesterdayKeyStr,
+      );
+    }
+
+    if (startIndex !== -1) {
+      let expectedDate = parseDateKey(sortedHistory[startIndex].date);
+
+      for (let i = startIndex; i < sortedHistory.length; i++) {
+        const entry = sortedHistory[i];
+        const entryDate = parseDateKey(entry.date);
+
+        if (entryDate.getTime() === expectedDate.getTime()) {
+          if (entry.calorieInfo.intake >= entry.calorieInfo.target) {
+            streak++;
+            expectedDate.setDate(expectedDate.getDate() - 1);
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
       }
     }
   }

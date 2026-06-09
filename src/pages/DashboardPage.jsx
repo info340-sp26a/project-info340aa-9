@@ -151,11 +151,19 @@ function DashboardPage() {
   }
 
   let activeSelectedDate = "";
+  const todayForSelection = toDateKey(new Date());
+
   const isValidDate = filteredHistory.some(
     (entry) => entry.date === selectedDate,
   );
+  const isTodayAvailable = filteredHistory.some(
+    (entry) => entry.date === todayForSelection,
+  );
+
   if (isValidDate) {
     activeSelectedDate = selectedDate;
+  } else if (isTodayAvailable) {
+    activeSelectedDate = todayForSelection;
   } else if (filteredHistory.length > 0) {
     activeSelectedDate = filteredHistory[filteredHistory.length - 1].date;
   }

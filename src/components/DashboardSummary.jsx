@@ -102,9 +102,7 @@ function DashboardSummary(props) {
   ];
 
   const visibleStatItems = metricQuery
-    ? statItems.filter((item) => {
-        item.label.toLowerCase().includes(metricQuery);
-      })
+    ? statItems.filter((item) => item.label.toLowerCase().includes(metricQuery))
     : statItems;
 
   const statContent =

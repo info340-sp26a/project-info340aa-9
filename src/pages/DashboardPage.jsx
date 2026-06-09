@@ -17,7 +17,6 @@ function toDateKey(date) {
 
 function parseDateKey(dateKey) {
   const [year, month, day] = dateKey.split("-").map(Number);
-
   return new Date(year, month - 1, day);
 }
 
@@ -26,28 +25,6 @@ function formatDateLabel(dateKey) {
     month: "short",
     day: "numeric",
     year: "numeric",
-  });
-}
-
-function generateCalorieHistory(days, targetCalories) {
-  const today = new Date();
-  const target = targetCalories;
-
-  return Array.from({ length: days }, (_, index) => {
-    const entryDate = new Date(today);
-    entryDate.setDate(today.getDate() - (days - index - 1));
-
-    const intake = Math.round(target * (0.6 + Math.random() * 0.6));
-    const burned = Math.round(target * (0.1 + Math.random() * 0.25));
-
-    return {
-      date: toDateKey(entryDate),
-      calorieInfo: {
-        target,
-        intake,
-        burned,
-      },
-    };
   });
 }
 
@@ -70,51 +47,54 @@ function DashboardPage() {
     name: "Larissa",
     calorieTarget: 2500,
   };
+
   const [period, setPeriod] = useState("week");
   const [logs, setLogs] = useState([]);
+  const [metricQuery, setMetricQuery] = useState("");
+
+  const [calorieHistory, setCalorieHistory] = useState([]);
 
   useEffect(() => {
     const logsRef = ref(database, "logs");
+    onValue(logsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setLogs(Object.values(data));
+      }
+    });
 
-  onValue(logsRef, (snapshot) => {
-    const data = snapshot.val();
+    const historyRef = ref(database, "calorieHistory");
+    onValue(historyRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const historyArray = Object.entries(data).map(
+          ([date, calorieInfo]) => ({
+            date,
+            calorieInfo,
+          }),
+        );
 
-    if (data) {
-      const logArray = Object.values(data);
-      setLogs(logArray);
-    }
-  });
-}, []);
+        historyArray.sort(
+          (a, b) => parseDateKey(a.date) - parseDateKey(b.date),
+        );
 
-const foodLogs = logs.filter((log) => {
-  return log.type === "food";
-});
+        setCalorieHistory(historyArray);
+      }
+    });
+  }, []);
 
-const activityLogs = logs.filter((log) => {
-  return log.type === "activity";
-});
+  const foodLogs = logs.filter((log) => log.type === "food");
+  const activityLogs = logs.filter((log) => log.type === "activity");
 
-const totalCaloriesConsumed = foodLogs.reduce(
-  (total, log) => {
+  const totalCaloriesConsumed = foodLogs.reduce((total, log) => {
     return total + Number(log.calories);
-  },
-  0
-);
+  }, 0);
 
-const totalCaloriesBurned = activityLogs.reduce(
-  (total, log) => {
+  const totalCaloriesBurned = activityLogs.reduce((total, log) => {
     return total + Number(log.calories);
-  },
-  0
-);
+  }, 0);
 
-const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
-
-  const [metricQuery, setMetricQuery] = useState("");
-  const calorieHistory = useMemo(
-    () => generateCalorieHistory(120, userProfile.calorieTarget),
-    [userProfile.calorieTarget]
-  );
+  const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
 
   const filteredHistory = useMemo(() => {
     if (calorieHistory.length === 0) {
@@ -128,7 +108,9 @@ const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
       year: 365,
     };
     const daysToInclude = daysByPeriod[period] ?? 7;
-    const latestDate = parseDateKey(calorieHistory[calorieHistory.length - 1].date);
+    const latestDate = parseDateKey(
+      calorieHistory[calorieHistory.length - 1].date,
+    );
     const cutoff = new Date(latestDate);
     cutoff.setDate(latestDate.getDate() - (daysToInclude - 1));
 
@@ -137,14 +119,17 @@ const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
 
   const availableDates = useMemo(
     () => new Set(filteredHistory.map((entry) => entry.date)),
-    [filteredHistory]
+    [filteredHistory],
   );
   const dateMin = filteredHistory[0]?.date ?? "";
   const dateMax = filteredHistory[filteredHistory.length - 1]?.date ?? "";
 
   const [selectedDate, setSelectedDate] = useState("");
-  const activeSelectedDate = availableDates.has(selectedDate) ? selectedDate : dateMax;
+  const activeSelectedDate = availableDates.has(selectedDate)
+    ? selectedDate
+    : dateMax;
   const todayKey = toDateKey(new Date());
+
   const summaryTitle = activeSelectedDate
     ? activeSelectedDate === todayKey
       ? "Daily Summary for Today"
@@ -157,13 +142,12 @@ const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
 
   const user = {
     name: userProfile.name,
-
     calorieInfo: fillCalorieInfo(
       selectedEntry?.calorieInfo ?? {
         target: userProfile.calorieTarget,
         intake: 0,
         burned: 0,
-      }
+      },
     ),
   };
 
@@ -181,7 +165,11 @@ const netCalories = totalCaloriesConsumed - totalCaloriesBurned;
           metricQuery={metricQuery}
           onMetricQueryChange={setMetricQuery}
         />
-        <DashboardSummary user={user} metricQuery={metricQuery} summaryTitle={summaryTitle} />
+        <DashboardSummary
+          user={user}
+          metricQuery={metricQuery}
+          summaryTitle={summaryTitle}
+        />
         <DashboardPlan netCalories={netCalories} />
       </main>
     </div>
